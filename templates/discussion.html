@@ -2,4 +2,11 @@
 {% block title %}Discussion{% endblock %}
 {% block content %}
     <h2>The Forum</h2>
+    <hr>
+    {% for zone in zones %}
+    <div class="zones">
+        <a href="{{zone.name}}">{{zone.name}}</a>
+    </div>
+    <hr>
+    {% endfor %}
 {% endblock %}

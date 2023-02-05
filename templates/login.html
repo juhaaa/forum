@@ -2,5 +2,17 @@
 {% block title %}Log in{% endblock %}
 {% block content %}
     <h2>Log in</h2>
-    <p>Here you will be able to log in.</p>
+    {% if session.username %}
+        <p>You are logged in as {{ session.username }}</p>
+        <a href="/logout"> Log out</a>
+    {% else %}
+        <form action="/login" methods="POST">
+        <p>Username:<br>
+        <input type="text" name="username"></p>
+        <p>Password:<br>
+        <input type="password" name="password"></p>
+        <input type="submit" value="Log In">
+        </form>
+    {% endif %}
+        
 {% endblock %}
