@@ -35,6 +35,7 @@ users and topics.
 >### Week 3
 >
 >- Project somewhat on its way. Basic html design is pretty much done and I'm pretty sure my schema if fine. Now there remains implementing almost all database functionality.
+>- Still trying to figure out the proper structure.
 
 ## How to open?
 
