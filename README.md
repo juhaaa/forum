@@ -27,18 +27,18 @@ users and topics.
 ## Changelog
 
 >- Where are we now?
-
+>
 >### Week 1 and 2
-
+>
 >- Pretty much just trying to test and understand flask
-
+>
 >### Week 3
-
+>
 >- Project somewhat on its way. Basic html design is pretty much done and I'm pretty sure my schema if fine. Now there remains implementing almost all database functionality.
 
 ## How to open?
 
-- 1st you need to setup virtual environment:
+- 1st you need download the project and setup virtual environment:
 
 ```bash
 python3 -m venv venv
@@ -55,6 +55,13 @@ psql < schema.sql
 
 ```bash
 psql < schema_test_add.sql
+```
+
+- You have to create .env file and define database url, whatever works for you, and a own secret key e.g.:
+
+```bash
+DATABASE_URL=postgresql+psycopg2://
+SECRET_KEY=432178320+390843217+094382720198
 ```
 
 - After these theps you will be able to run the app:
