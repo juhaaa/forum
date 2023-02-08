@@ -29,17 +29,16 @@ def zone(name):
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == 'POST':
+      session["name"] = request.form.get("username")
+      return redirect("/")
     return render_template("login.html")
 
 @app.route("/logout")
 def logout():
-    del session["username"]
+    session["name"] = None
     return redirect("/")
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
     return render_template("register.html")
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

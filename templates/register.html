@@ -2,16 +2,9 @@
 {% block title %}Register{% endblock %}
 {% block content %}
     <h2>Register</h2>
-    {% if session.username %}
-        <p>You dont have to register again, {{ session.username }}</p>
-        <a href="/logout"> Log out</a>
-    {% else %}
-        <form action="/login" methods="POST">
-        <p>Username:<br>
-        <input type="text" name="username"></p>
-        <p>Password:<br>
-        <input type="password" name="password"></p>
-        <input type="submit" value="Register">
+        <form action="/register" method="post">
+            <input type="text" placeholder="Username" required autofocus name="username">
+            <input type="password" placeholder="Password" required name="password">
+            <input type="submit" value="Register">
         </form>
-    {% endif %}
 {% endblock %}

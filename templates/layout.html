@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="static/styles.css" />
     <title>Discussion Forum -{% block title %} {% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="static/favicon.ico">
 </head>
 <header>
     <div class="container">
@@ -16,9 +17,13 @@
     <div class="container">
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="discussion">Discussion</a></li>
+            {% if session.name %}
+                <li><a href="discussion">Discussion</a></li>
+                <a href="/logout">Log out, {{ session.name }}</a>
+            {% else %}
             <li><a href="login">Login</a></li>
             <li><a href="register">Sign-up</a></li>
+            {% endif %}
         </ul>
     </div>
 </nav>
@@ -27,4 +32,5 @@
         {% block content %} {% endblock %}
     </div>
 </body>
+
 </html>
