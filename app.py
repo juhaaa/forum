@@ -14,19 +14,22 @@ db = SQLAlchemy(app)
 def index():
     return render_template("index.html")
 
-@app.route("/discussion")
+@app.route("//discussion")
 def discussion():
     sql = text("SELECT id, name FROM discussion_zones ORDER BY id")
     result = db.session.execute(sql)
     zones =  result.fetchall()
     return render_template("discussion.html", zones=zones)
 
-@app.route("/<name>")
+@app.route("/discussion/<name>")
 def zone(name):
     sql = text("SELECT name, id FROM discussion_zones WHERE name=:name")
     result = db.session.execute(sql,  {"name":name})
     zone =  result.fetchone()
-    return render_template("zone.html", name=name, zone=zone)
+    sql2 = text("SELECT topics.id, topics.user_id, topics.title, topics.content, users.username, created_at FROM topics LEFT JOIN users ON users.id=topics.user_id WHERE topics.discussion_zone_id=:zoneid ORDER BY topics.created_at DESC")
+    result2 = db.session.execute(sql2, {"zoneid":zone.id})
+    topics = result2.fetchall()
+    return render_template("/zone.html", name=name, zone=zone, topics=topics)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

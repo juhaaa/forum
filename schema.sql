@@ -10,15 +10,9 @@ CREATE TABLE discussion_zones (
   name VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE categories (
-  id SERIAL PRIMARY KEY,
-  discussion_zone_id INTEGER REFERENCES discussion_zones (id),
-  name VARCHAR(50) NOT NULL
-);
-
 CREATE TABLE topics (
   id SERIAL PRIMARY KEY,
-  category_id INTEGER REFERENCES categories (id),
+  discussion_zone_id INTEGER REFERENCES discussion_zones (id),
   user_id INTEGER REFERENCES users (id),
   title VARCHAR(100) NOT NULL,
   content TEXT NOT NULL,

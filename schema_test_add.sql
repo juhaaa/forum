@@ -7,3 +7,5 @@ INSERT INTO discussion_zones (name) VALUES ('Ruby');
 INSERT INTO discussion_zones (name) VALUES ('Rockstar language');
 INSERT INTO users (username, password) VALUES ('juhaaa', 'jaska123');
 INSERT INTO users (username, password, is_admin) VALUES ('admin', 1234, TRUE);
+INSERT INTO topics (discussion_zone_id, user_id, title, content) VALUES (2, 1, 'How to deal with division and floats?', 'What can I do to prevent my integers turnind into floats when using division in python 3?');
+INSERT INTO topics (discussion_zone_id, user_id, title, content) VALUES (2, 1, 'How to use Curses?', 'Any tips to start with?');

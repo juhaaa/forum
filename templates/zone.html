@@ -1,6 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}Discussion{% endblock %}
 {% block content %}
-    <h2>{{zone.name}}</h2>
+    <div class="topic-header">
+    <ul>
+        <li><h2>{{zone.name}}</h2></li>
+        <li><form action="/new">
+            <input type="submit" value="New topic">
+        </form></li>    
+    </ul>
+    </div>
+    <hr>
+    {% for topic in topics %}
+    <div class="topics">
+        <a href="/discussion/{{zone.name}}/{{topic.id}}">{{topic.title}}</a>
+        <p>Author: {{topic.username}} Started: {{topic.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</p>
+    </div>
+    <hr>
+    {% endfor %}
 
 {% endblock %}
