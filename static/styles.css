@@ -2,12 +2,21 @@
     width: 80%;
     margin: auto;
     overflow: hidden;
+    text-align: center;
     
 }
 
 .container h1, h2{
     font-weight: 300;
     
+    
+}
+
+.container hr{
+    border: 1px  #6cb197;
+    border-radius: 2px;
+    border-style: dashed;
+    width: 30%;
 }
 
 body {
@@ -19,20 +28,11 @@ body {
     margin: 0;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-  }
-
-
-
 input {
     width:50%;
     padding: 12px 20px;
     margin: 12px;
-    box-sizing: content-box
+    box-sizing: content-box;
   }
 
   input[type=submit]{
@@ -48,6 +48,7 @@ input {
   input[type=submit]:hover{
     background-color: #04AA6D;
     color: white;
+    font-weight: bold;
   }
 
   input[type=submit]:active{
