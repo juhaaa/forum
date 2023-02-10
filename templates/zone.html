@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Discussion{% endblock %}
 {% block content %}
+{% if session.name %}
     <div class="topic-header">
     <ul>
         <li><h2>{{zone.name}}</h2></li>
@@ -17,5 +18,12 @@
     </div>
     <hr>
     {% endfor %}
+{% else %}
+<div class="zones">
+    <br>
+        <a href="/login">Please log in</a>
+    <hr>
+</div>
+{% endif%}
 
 {% endblock %}

@@ -1,12 +1,20 @@
 {% extends "layout.html" %}
 {% block title %}Discussion{% endblock %}
 {% block content %}
+{% if session.name %}
     <h2>The Forum</h2>
     <hr>
     {% for zone in zones %}
-    <div class="zones">
-        <a href="/discussion/{{zone.name}}">{{zone.name}}</a>
-    </div>
+        <div class="zones">
+            <a href="/discussion/{{zone.name}}">{{zone.name}}</a>
+        </div>
     <hr>
     {% endfor %}
+{% else %}
+    <div class="zones">
+        <br>
+            <a href="/login">Please log in</a>
+        <hr>
+    </div>
+{% endif %}
 {% endblock %}
