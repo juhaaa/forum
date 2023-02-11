@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block title %}Discussion{% endblock %}
+{% block action%}
+    <form id="nav-button" action="/reply/{{topic.id}}">
+    <input type="submit" value="Reply">
+    </form>
+{% endblock %}
+{% block content %}
+{% if session.name %}
+    <div class="topic-header">
+        <h2>{{topic.title}}</h2>
+    </div>
+
+    <div class="topics">
+        <table>
+            <tr>
+                <td>{{topic.content}}</td>
+                <th>
+                    <ul>
+                        <li>{{topic.username}}</li>
+                        <li id="date">{{topic.created_at.strftime('%H:%M:%S')}}</li>
+                        <li id="date">{{topic.created_at.strftime('%d-%m-%Y')}}</li>
+                    </ul>
+                </th>
+            </tr>
+        </table>
+{% for reply in replies %}
+        <table>
+            <tr>
+                <td>{{reply.content}}</td>
+                <th>
+                    <ul>
+                        <li>{{reply.username}}</li>
+                        <li id="date">{{reply.created_at.strftime('%H:%M:%S')}}</li>
+                        <li id="date">{{reply.created_at.strftime('%d-%m-%Y')}}</li>
+                    </ul>
+                </th>
+            </tr>
+        </table>
+{% endfor %}
+    </div>
+{% else %}
+    <div class="zones">
+        <br>
+            <a href="/login">Please log in</a>
+        <hr>
+    </div>
+{% endif%}
+
+{% endblock %}

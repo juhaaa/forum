@@ -8,6 +8,7 @@
 
 .container h1, h2{
     font-weight: 300;
+    text-shadow: 1px 1px #6cb197;
        
 }
 
@@ -53,17 +54,18 @@ input[type=submit]:active, input[type=button]:active{
     border-style: inset;
 }
 
-
-.topic-header li{
-    display: inline-block;
-    padding: 10px;
-    margin-left: -20px;
+#nav-button{
+    width: 5%;
+    display: inline-table;
+    margin: -20px;
+    margin-left: 0px;
 }
-
 
 #navbar{
     background-color: #8f8e8e;
     color: #fff;
+    position: sticky;
+    top: 0;  
 }
 
 #navbar ul{
@@ -79,7 +81,7 @@ input[type=submit]:active, input[type=button]:active{
     color: #fff;
     text-decoration: none;
     font-size: 16px;
-    padding-right: 15px;
+    padding-right: 10px;
 }
 
 #navbar a:hover{
@@ -121,6 +123,46 @@ input[type=submit]:active, input[type=button]:active{
     font-size: 11px;
     margin-top: -10px;
 }
+
+.topics table{
+    border-collapse: collapse;
+    width: 100%;
+    border-spacing: 100px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.topics th{
+    text-align: center;
+    width: 15%;
+    font-weight: inherit;
+    white-space: nowrap;
+    vertical-align: top;
+    
+    
+}
+
+.topics tr{
+    border: none;
+}
+
+.topics td{
+    border: dashed 2px #6cb197;
+    border-radius: 2px;
+    padding: 10px;
+    
+}
+
+.topics ul{
+    list-style: none;
+}
+
+.topics #date{
+    font-size: 10px;
+    color: black;
+    margin-top: -10px;
+}
+
 
 
 @media(max-width: 600px){

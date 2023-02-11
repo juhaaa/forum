@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 {% block title %}Discussion{% endblock %}
+{% block action%}
+    <form id="nav-button" action="/new/{{zone.id}}">
+    <input type="submit" value="New topic">
+    </form>
+{% endblock %}
 {% block content %}
 {% if session.name %}
     <div class="topic-header">
-    <ul>
-        <li><h2>{{zone.name}}</h2></li>
-        <li><form action="/new">
-            <input type="submit" value="New topic">
-        </form></li>    
-    </ul>
+        <h2>{{zone.name}}</h2>
     </div>
     <hr>
     {% for topic in topics %}
