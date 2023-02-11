@@ -36,7 +36,7 @@ def topic(name, topic_id):
     sql = text("SELECT topics.id, topics.title, topics.content, topics.created_at, users.username FROM topics LEFT JOIN users ON users.id=topics.user_id WHERE topics.id=:topic_id")
     result = db.session.execute(sql, {"topic_id":topic_id})
     topic = result.fetchone()
-    sql2 = text("SELECT users.username, replies.content, replies.created_at FROM replies LEFT JOIN users ON  users.id=replies.user_id WHERE topic_id=:topic_id")
+    sql2 = text("SELECT users.username, replies.content, replies.created_at FROM replies LEFT JOIN users ON  users.id=replies.user_id WHERE topic_id=:topic_id ORDER BY replies.created_at")
     result2 = db.session.execute(sql2, {"topic_id":topic_id})
     replies = result2.fetchall()
     return render_template("/topic.html", name=name, topic_id=topic_id, topic=topic, replies=replies)
@@ -45,7 +45,7 @@ def topic(name, topic_id):
 def login():
     if request.method == 'POST':
       session["name"] = request.form.get("username")
-      return redirect("/")
+      return redirect("/discussion")
     return render_template("login.html")
 
 @app.route("/logout")

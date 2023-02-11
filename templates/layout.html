@@ -16,11 +16,12 @@
 <nav id="navbar">
     <div class="container">
         <ul>
-            <li><a href="/">Home</a></li>
             {% if session.name %}
                 <li><a href="/discussion">Discussion</a></li>
-                <a href="/logout">Log out ({{ session.name }})</a>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/logout">Log out ({{ session.name }})</a></li>
             {% else %}
+            <li><a href="/">Home</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/register">Sign-up</a></li>
             {% endif %}

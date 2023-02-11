@@ -7,9 +7,10 @@
 {% endblock %}
 {% block content %}
 {% if session.name %}
-    <div class="topic-header">
-        <h2>{{topic.title}}</h2>
+    <div class="topics">
+        <h2><a href="/discussion/{{name}}">{{name}}</a> / {{topic.title}}</h2>
     </div>
+    <hr>
 
     <div class="topics">
         <table>
@@ -24,8 +25,9 @@
                 </th>
             </tr>
         </table>
-{% for reply in replies %}
+    {% for reply in replies %}
         <table>
+            
             <tr>
                 <td>{{reply.content}}</td>
                 <th>
@@ -35,9 +37,9 @@
                         <li id="date">{{reply.created_at.strftime('%d-%m-%Y')}}</li>
                     </ul>
                 </th>
-            </tr>
+            </tr>   
         </table>
-{% endfor %}
+        {% endfor %}
     </div>
 {% else %}
     <div class="zones">
