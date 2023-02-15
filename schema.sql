@@ -12,7 +12,7 @@ CREATE TABLE discussion_zones (
 
 CREATE TABLE topics (
   id SERIAL PRIMARY KEY,
-  discussion_zone_id INTEGER REFERENCES discussion_zones (id),
+  discussion_zone_id INTEGER REFERENCES discussion_zones (id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES users (id),
   title VARCHAR(100) NOT NULL,
   content TEXT NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE topics (
 
 CREATE TABLE replies (
   id SERIAL PRIMARY KEY,
-  topic_id INTEGER REFERENCES topics (id),
+  topic_id INTEGER REFERENCES topics (id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES users (id),
   content TEXT NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
