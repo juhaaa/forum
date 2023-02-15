@@ -7,6 +7,9 @@
     {% for zone in zones %}
         <div class="zones">
             <a href="/discussion/{{zone.name}}">{{zone.name}}</a>
+            {% if session.admin %}
+                <a href="/delete/{{zone.name}}">[DELETE]</a>
+            {% endif %}
         </div>
     <hr>
     {% endfor %}
