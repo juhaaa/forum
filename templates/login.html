@@ -6,14 +6,5 @@
         <input type="text" placeholder="Username" required autofocus name="username" maxlength="20">
         <input type="password" placeholder="Password" required name="password" maxlength="20">
         <input type="submit" value="Log In">
-    </form>
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-            <div class="flash">
-                <p>{{ message }}</p>
-             </div>
-        {% endfor %}
-    {% endif %}
-{% endwith %}        
+    </form>    
 {% endblock %}
