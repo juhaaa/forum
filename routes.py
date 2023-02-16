@@ -1,5 +1,5 @@
 from app import app
-from flask import redirect, render_template, request, session
+from flask import redirect, render_template, request, session, flash
 from sqlalchemy.sql import text
 import discussion_querys
 import users
@@ -88,11 +88,14 @@ def login():
         password = request.form.get("password")
         if users.check_login(username, password):
             session["name"] = username
-        if users.check_admin(username):
-            session["admin"] = True
+            if users.check_admin(username):
+                session["admin"] = True
+            return redirect("/discussion")
+        flash("Check your username and password")    
+        return render_template("login.html")
+    else:
+        return render_template("login.html")
         
-        return redirect("/discussion")
-    return render_template("login.html")
 
 
 @app.route("/logout")

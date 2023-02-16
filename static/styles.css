@@ -8,6 +8,7 @@
 
 .container h1, h2{
     font-weight: 300;
+    
 }
 
 .container hr{
@@ -191,6 +192,10 @@ input[type=submit]:active, input[type=button]:active{
 .topics input:hover{
     background-color: red;
 
+}
+
+.flash{
+    color: rgba(255, 0, 0, 0.5);
 }
 
 
