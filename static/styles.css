@@ -170,6 +170,30 @@ input[type=submit]:active, input[type=button]:active{
     white-space: nowrap;
 }
 
+.zones input{
+    background-color: rgba(255, 0, 0, 0.15);
+    display: inline;
+    margin: 5px;
+    padding: 5px;
+}
+
+.zones input:hover{
+    background-color: red;
+}
+
+.topics input{
+    background-color: rgba(255, 0, 0, 0.15);
+    display: inline;
+    margin: 5px;
+    padding: 5px;
+}
+
+.topics input:hover{
+    background-color: red;
+
+}
+
+
 @media(max-width: 600px){
     #main{
         width: 100%;

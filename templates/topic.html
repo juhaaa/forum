@@ -35,6 +35,13 @@
                         <li>{{reply.username}}</li>
                         <li id="date">{{reply.created_at.strftime('%H:%M:%S')}}</li>
                         <li id="date">{{reply.created_at.strftime('%d-%m-%Y')}}</li>
+                        {% if session.admin %}
+                        <li>
+                            <form id="nav-button" action="/deletereply/{{reply.id}}">
+                                <input type="submit" value="DEL">
+                            </form>
+                        </li>
+                        {% endif %}
                     </ul>
                 </th>
             </tr>   

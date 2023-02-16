@@ -14,7 +14,12 @@
     {% for topic in topics %}
     <div class="topics">
         <a href="/discussion/{{zone.name}}/{{topic.id}}">{{topic.title}}</a>
-        <p>Author: {{topic.username}} Started: {{topic.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</p>
+        {% if session.admin %}
+            <form id="nav-button" action="/deletetopic/{{topic.id}}">
+                <input type="submit" value="DEL">
+            </form>
+        {% endif %}
+        <p>Author: {{topic.username}} Started: {{topic.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</p>  
     </div>
     <hr>
     {% endfor %}

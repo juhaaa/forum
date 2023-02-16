@@ -35,14 +35,46 @@ def topic(name, topic_id):
     replies =discussion_querys.get_replies(topic_id)
     return render_template("/topic.html", name=name, topic_id=topic_id, topic=topic, replies=replies)
 
+@app.route("/newzone")
+def admin_new_zone():
 
+    # Route for admin to create new discussion zone
+
+    return "newzone"
+
+@app.route("/deletezone/<name>")
+def admin_delete_zone(name):
+
+    # Route for admin to delete discussion zone
+
+    return f"delete zone {name}"
+
+@app.route("/deletetopic/<topic_id>")
+def admin_delete_topic(topic_id):
+
+    # Route for admin, deleting topics
+
+    return f"delete topic {topic_id}"
+
+@app.route("/deletereply/<reply_id>")
+def admin_delete_reply(reply_id):
+
+    # Route for admin to delete replys
+
+    return f"delete reply {reply_id}"
 
 @app.route("/new/<zone_id>")
 def new_topic(zone_id):
+
+    # Route for creating new topic
+
     return f"New topic under zone {zone_id}"
 
 @app.route("/reply/<topic_id>")
 def new_reply(topic_id):
+
+    # Route for replying to a topic
+
     return f"New reply under topic {topic_id}"
 
 
@@ -75,6 +107,9 @@ def logout():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+
+    # Route for registering
+
     if request.method == 'POST':
         username = request.form.get("username")
         password1 = request.form.get("password")
@@ -92,7 +127,12 @@ def register():
         users.register_user(username, password1)
         return redirect("/login")
 
-        
-    # Route for registering
-
     return render_template("register.html")
+
+
+@app.route("/search")
+def search():
+
+    # Route for searching messages
+
+    return "SEARCH"

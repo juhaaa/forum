@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Discussion{% endblock %}
+{% block adminbar %}
+    <form id="nav-button" action="/newzone">
+        <input type="submit" value="New Zone">
+    </form>
+{% endblock %}
 {% block content %}
 {% if session.name %}
     <h2>The Forum</h2>
@@ -8,7 +13,9 @@
         <div class="zones">
             <a href="/discussion/{{zone.name}}">{{zone.name}}</a>
             {% if session.admin %}
-                <a href="/delete/{{zone.name}}">[DELETE]</a>
+                <form id="nav-button" action="/deletezone/{{zone.name}}">
+                    <input type="submit" value="DEL">
+                </form>
             {% endif %}
         </div>
     <hr>

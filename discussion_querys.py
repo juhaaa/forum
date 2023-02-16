@@ -50,7 +50,7 @@ def get_replies(topic_id):
 
     # With parameter topic_id, returns all replies.
 
-    sql2 = text("""SELECT users.username, replies.content, replies.created_at FROM replies 
+    sql2 = text("""SELECT replies.id, users.username, replies.content, replies.created_at FROM replies 
                 LEFT JOIN users ON  users.id=replies.user_id WHERE topic_id=:topic_id 
                 ORDER BY replies.created_at""")
                 
