@@ -15,11 +15,19 @@
     <div class="topics">
         <a href="/discussion/{{zone.name}}/{{topic.id}}">{{topic.title}}</a>
         {% if session.admin %}
-            <form id="nav-button" action="/deletetopic/{{topic.id}}">
-                <input type="submit" value="DEL">
-            </form>
+            <ul>
+                <li>
+                    <p id="left">Author: {{topic.username}} Started: {{topic.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</p>
+                </li>
+                <li>
+                    <form id="nav-button" action="/deletetopic/{{topic.id}}">
+                        <input type="submit" value="DEL">
+                    </form> 
+                </li>
+            </ul>   
+        {% else%}
+            <p>Author: {{topic.username}} Started: {{topic.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</p> 
         {% endif %}
-        <p>Author: {{topic.username}} Started: {{topic.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</p>  
     </div>
     <hr>
     {% endfor %}

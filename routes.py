@@ -89,9 +89,10 @@ def login():
         if users.check_login(username, password):
             session["name"] = username
             if users.check_admin(username):
+                flash("Admin logged in", "success")
                 session["admin"] = True
             return redirect("/discussion")
-        flash("Check your username and password")    
+        flash('Check your username and password', 'error')    
         return render_template("login.html")
     else:
         return render_template("login.html")
@@ -117,20 +118,25 @@ def register():
         username = request.form.get("username")
         password1 = request.form.get("password")
         password2 = request.form.get("password2")
-
+        
         if not users.check_passwords(password1, password2):
-            return "not same passes"
+            flash("Check your passwords", "error")
+            return render_template("register.html")
         
         if not users.check_username_lenght(username):
-            return "too long username"
-
+            flash("Username too long", "error")
+            return render_template("register.html")
+        
         if not users.check_username_availabillity(username):
-            return "username taken"
+            flash(f"Username {username} is already in use", "error")
+            return render_template("register.html")
         
         users.register_user(username, password1)
+        flash(f"You are now registered, {username}!", "success")
         return redirect("/login")
-
+    
     return render_template("register.html")
+    
 
 
 @app.route("/search")

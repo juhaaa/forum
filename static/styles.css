@@ -159,7 +159,14 @@ input[type=submit]:active, input[type=button]:active{
 
 .topics ul{
     list-style: none;
+    padding: 0px;
+    margin: 0px;
 }
+
+.topics li{
+    display:inline-table;
+}
+
 
 
 #date{
@@ -200,8 +207,11 @@ input[type=submit]:active, input[type=button]:active{
     margin-top: 10px;
     border-radius: 5px;
     text-align: center;
-    color: rgba(255, 0, 0, 0.568);
-    
+    color: rgba(255, 0, 0, 0.568);  
+}
+
+.success{
+    color: green;
 }
 
 
