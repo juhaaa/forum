@@ -3,9 +3,9 @@
 {% block content %}
     <h2>Register</h2>
         <form action="/register" method="post">
-            <input type="text" placeholder="Username" required autofocus name="username" maxlength="20">
-            <input type="password" placeholder="Password" required name="password" maxlength="20">
-            <input type="password" placeholder="Repeat your password" required name="password2" maxlength="20">
+            <input type="text" placeholder="Username" required autofocus name="username" maxlength="20" autocomplete="off">
+            <input type="password" placeholder="Password" required name="password" maxlength="20" autocomplete="off">
+            <input type="password" placeholder="Repeat your password" required name="password2" maxlength="20" autocomplete="off">
             <input type="submit" value="Register">
         </form>
 {% endblock %}

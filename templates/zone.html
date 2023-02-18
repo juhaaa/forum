@@ -17,10 +17,10 @@
         {% if session.admin %}
             <ul>
                 <li>
-                    <p id="left">Author: {{topic.username}} Started: {{topic.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</p>
+                    <p>Author: {{topic.username}} Started: {{topic.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</p>
                 </li>
                 <li>
-                    <form id="nav-button" action="/deletetopic/{{topic.id}}">
+                    <form id="nav-button" action="/deletetopic/{{zone.name}}/{{topic.id}}/{{topic.title}}">
                         <input type="submit" value="DEL">
                     </form> 
                 </li>

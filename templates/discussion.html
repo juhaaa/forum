@@ -13,7 +13,7 @@
         <div class="zones">
             <a href="/discussion/{{zone.name}}">{{zone.name}}</a>
             {% if session.admin %}
-                <form id="nav-button" action="/deletezone/{{zone.name}}">
+                <form id="nav-button" action="/deletezone/{{zone.id}}/{{zone.name}}">
                     <input type="submit" value="DEL">
                 </form>
             {% endif %}

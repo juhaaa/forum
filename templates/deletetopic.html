@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Delete{% endblock %}
+{% block content %}
+{% if session.admin %}
+<div class="delete">
+    <h2>Delete topic:</h2>
+    <p> {{title}}?</p>
+    <form action="/deletetopic/{{zone_name}}/{{topic_id}}/{{title}}" method="post">
+        <input type="radio" name="yes_no" value="yes">Yes</input>
+        <input type="radio" name="yes_no" value="no" checked>No</input>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endif %}   
+{% endblock %}

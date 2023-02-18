@@ -12,7 +12,7 @@
     </div>
     <hr>
 
-    <div class="topics">
+    <div class="messages">
         <table>
             <tr>
                 <td>{{topic.content}}</td>
@@ -37,7 +37,7 @@
                         <li id="date">{{reply.created_at.strftime('%d-%m-%Y')}}</li>
                         {% if session.admin %}
                         <li>
-                            <form id="nav-button" action="/deletereply/{{reply.id}}">
+                            <form id="nav-button" action="/deletereply/{{name}}/{{topic.id}}/{{reply.id}}/{{reply.username}}">
                                 <input type="submit" value="DEL">
                             </form>
                         </li>

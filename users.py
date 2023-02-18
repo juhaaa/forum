@@ -38,7 +38,7 @@ def check_passwords(password1, password2):
         return False
     return True
 
-def check_username_lenght(username):
+def check_username_length(username):
 
     # checks username length
 

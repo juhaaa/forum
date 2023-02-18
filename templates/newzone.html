@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}New zone{% endblock %}
+{% block content %}
+{% if session.admin %}
+<h2>Create new discussion zone</h2>
+    <form action="/newzone" method="post">
+        <input type="text" placeholder="Zone name" required autofocus name="zone_name" maxlength="50">
+        <input type="submit" value="Create zone">
+    </form>
+{% endif %}   
+{% endblock %}

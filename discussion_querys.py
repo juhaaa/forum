@@ -57,6 +57,3 @@ def get_replies(topic_id):
     result2 = db.session.execute(sql2, {"topic_id":topic_id})
     replies = result2.fetchall()
     return replies
-
-
-

@@ -18,6 +18,7 @@
     width: 30%;
 }
 
+
 body {
     background-color: #e6e6e6;
     font-family: Arial, Helvetica, sans-serif;
@@ -52,6 +53,15 @@ input[type=submit]:hover, input[type=button]:hover{
 
 input[type=submit]:active, input[type=button]:active{
     border-style: inset;
+}
+
+.delete{
+    display: inline-block;
+}
+
+input[type=radio]{
+    width: auto;
+
 }
 
 #nav-button{
@@ -124,13 +134,27 @@ input[type=submit]:active, input[type=button]:active{
     margin-top: -10px;
 }
 
-.topics table{
+.topics ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.topics li{
+    display:inline-table;
+}
+
+.messages ul{
+    list-style: none;
+}
+
+.messages table{
     border-collapse:collapse;
     width: 100%;
     margin-top: 20px;
 }
 
-.topics th{
+.messages th{
     text-align: left;
     display: inline-flexbox;
     font-size: 11px;
@@ -144,11 +168,11 @@ input[type=submit]:active, input[type=button]:active{
     
 }
 
-.topics tr{
+.messages tr{
     border: none;
 }
 
-.topics td{
+.messages td{
     width: 80%;
     border: dotted 2px #6cb197;
     border-radius: 2px;
@@ -157,15 +181,7 @@ input[type=submit]:active, input[type=button]:active{
     text-align: left;
 }
 
-.topics ul{
-    list-style: none;
-    padding: 0px;
-    margin: 0px;
-}
 
-.topics li{
-    display:inline-table;
-}
 
 
 
@@ -201,6 +217,18 @@ input[type=submit]:active, input[type=button]:active{
 
 }
 
+.messages input{
+    background-color: rgba(255, 0, 0, 0.15);
+    display: inline;
+    margin: 5px;
+    padding: 5px;
+}
+
+.messages input:hover{
+    background-color: red;
+
+}
+
 .flash{
     margin: auto;
     width: 40%;
@@ -211,7 +239,7 @@ input[type=submit]:active, input[type=button]:active{
 }
 
 .success{
-    color: green;
+    color: rgb(3, 173, 3);
 }
 
 

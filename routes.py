@@ -1,8 +1,8 @@
 from app import app
 from flask import redirect, render_template, request, session, flash
-from sqlalchemy.sql import text
 import discussion_querys
 import users
+import admin_sql
 from db import db
 
 @app.route("/")
@@ -35,33 +35,67 @@ def topic(name, topic_id):
     replies =discussion_querys.get_replies(topic_id)
     return render_template("/topic.html", name=name, topic_id=topic_id, topic=topic, replies=replies)
 
-@app.route("/newzone")
+@app.route("/newzone", methods=["GET", "POST"])
 def admin_new_zone():
 
     # Route for admin to create new discussion zone
 
-    return "newzone"
+    if request.method == 'POST':
+        zone_name = request.form.get("zone_name")
+        if admin_sql.add_new_zone(zone_name):
+            flash(f"Zone {zone_name} created", "success")
+            return redirect("/discussion")
+        else:
+            flash("Zone not created", "error")
+            return render_template("newzone.html")
 
-@app.route("/deletezone/<name>")
-def admin_delete_zone(name):
+    return render_template("newzone.html")
+
+@app.route("/deletezone/<id>/<name>", methods=["GET", "POST"])
+def admin_delete_zone(id, name):
 
     # Route for admin to delete discussion zone
 
-    return f"delete zone {name}"
+    if request.method == 'POST':
+        if request.form.get("yes_no") == "yes":
+            admin_sql.delete_zone(id)
+            flash(f"Zone {name} deleted.", "success")
+            return redirect("/discussion")
+        else:
+            return redirect("/discussion")
+    return render_template("/deletezone.html", name=name, id=id)
 
-@app.route("/deletetopic/<topic_id>")
-def admin_delete_topic(topic_id):
+@app.route("/deletetopic/<zone_name>/<topic_id>/<title>", methods=["GET", "POST"])
+def admin_delete_topic(topic_id, title, zone_name):
 
     # Route for admin, deleting topics
 
-    return f"delete topic {topic_id}"
+    if request.method == 'POST':
+        url = "/discussion/" + zone_name
+        if request.form.get("yes_no") == "yes":
+            admin_sql.delete_topic(topic_id)
+            flash(f"Topic \"{title}\" deleted.", "success")
+            return redirect(url)
+        else:
+            return redirect(url)
+    return render_template("/deletetopic.html", title=title, topic_id=topic_id, zone_name=zone_name)
 
-@app.route("/deletereply/<reply_id>")
-def admin_delete_reply(reply_id):
+
+@app.route("/deletereply/<zone_name>/<topic_id>/<reply_id>/<username>", methods=["GET", "POST"])
+def admin_delete_reply(zone_name, topic_id, reply_id, username):
 
     # Route for admin to delete replys
 
-    return f"delete reply {reply_id}"
+    if request.method == 'POST':
+        url = "/discussion/" + zone_name + "/" + topic_id
+        if request.form.get("yes_no") == "yes":
+            admin_sql.delete_reply(reply_id)
+            flash(f"{username}'s reply deleted.", "success")
+            return redirect(url)
+        else:
+            return redirect(url)
+
+    return render_template("deletereply.html", zone_name=zone_name, topic_id=topic_id, reply_id=reply_id, username=username)
 
 @app.route("/new/<zone_id>")
 def new_topic(zone_id):
@@ -123,7 +157,7 @@ def register():
             flash("Check your passwords", "error")
             return render_template("register.html")
         
-        if not users.check_username_lenght(username):
+        if not users.check_username_length(username):
             flash("Username too long", "error")
             return render_template("register.html")
         
