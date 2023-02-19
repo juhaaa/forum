@@ -19,6 +19,7 @@ python/flask and PostgreSQL while trying these techniques for the first time.
 - Deleting users, or ability to post?
 - Deleting discussion zones, or visibility?
 - Search- function.
+- still missing one table.
 
 
 ## Interface
