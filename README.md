@@ -6,17 +6,20 @@ python/flask and PostgreSQL while trying these techniques for the first time.
 - Documentation and code will be written in english.
 ## Intended features
 
+### Done:
 - Two types of users, ADMIN/basic
-- Basic users can create account,  log in, create topics and write messages
- under topics.
+- Basic users can create account,  log in, create topics and write messages under topics.
 - Messages can also be modified.
-- In addition to basic user capabilities, admin is able to delete messages,
-users and topics. 
-- Admins are also able to add/delete discussion zone for different topics.
-- Search- function.
+- In addition to basic user capabilities, admin is able to delete messages users and topics.
+- Admins are also able to add discussion zone for different topics.
 - only visible for registered users.
-- user message count?
 - Message timestamping. 
+
+### TODO:
+- Deleting users, or ability to post?
+- Deleting discussion zones, or visibility?
+- Search- function.
+
 
 ## Interface
 
@@ -26,16 +29,26 @@ users and topics.
 
 ## Changelog
 
->- Where are we now?
->
->### Week 1 and 2
->
->- Pretty much just trying to test and understand flask
->
->### Week 3
->
->- Project somewhat on its way. Basic html design is pretty much done and I'm pretty sure my schema if fine. Now there remains implementing almost all database functionality.
->- Still trying to figure out the proper structure.
+- Where are we now?
+
+### Week 1 and 2
+
+- Pretty much just trying to test and understand flask
+
+### Week 3
+
+- Project somewhat on its way. Basic html design is pretty much done and I'm pretty sure my schema is fine. Now there remains implementing almost all database functionality.
+- Still trying to figure out the proper structure.
+
+### week 4
+
+- Implementing basic queries to serve forum structure
+
+### week 5
+
+- Ability to post topics and messages. Admin can create new zones.
+- Users can modify their own messages and topics. Admins are able to do that and also delete every message and topic.
+- Looks like a forum.
 
 ## How to open?
 
@@ -62,11 +75,17 @@ psql < schema_test_add.sql
 
 ```bash
 DATABASE_URL=postgresql+psycopg2://
-SECRET_KEY=432178320+390843217+094382720198
+SECRET_KEY=<secret-key>
 ```
 
 - After these theps you will be able to run the app:
 
 ```bash
 flask run
+```
+- For you to be able to try the admin capabilities, you need to set users is_admin to True.
+- First of course, you need to register user.
+
+```bash
+UPDATE users SET is_admin=True WHERE username='YOUR_USERNAME';
 ```
