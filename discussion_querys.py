@@ -50,10 +50,22 @@ def get_replies(topic_id):
 
     # With parameter topic_id, returns all replies.
 
-    sql2 = text("""SELECT replies.id, users.username, replies.content, replies.created_at FROM replies 
+    sql = text("""SELECT replies.id, users.username, replies.content, replies.created_at FROM replies 
                 LEFT JOIN users ON  users.id=replies.user_id WHERE topic_id=:topic_id 
                 ORDER BY replies.created_at""")
                 
-    result2 = db.session.execute(sql2, {"topic_id":topic_id})
-    replies = result2.fetchall()
+    result = db.session.execute(sql, {"topic_id":topic_id})
+    replies = result.fetchall()
     return replies
+
+def get_title_and_zone(topic_id):
+
+    # Returns topic title and zone name
+    
+    sql = text("""SELECT t.title, d.name FROM topics t 
+                LEFT JOIN discussion_zones d ON t.discussion_zone_id=d.id 
+                WHERE t.id=:topic_id""")
+    result = db.session.execute(sql, {"topic_id":topic_id})
+    title_and_zone = result.fetchone()
+    return title_and_zone
+

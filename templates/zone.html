@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Discussion{% endblock %}
 {% block action%}
-    <form id="nav-button" action="/new/{{zone.id}}">
+    <form id="nav-button" action="/newtopic/{{zone.name}}">
     <input type="submit" value="New topic">
     </form>
 {% endblock %}

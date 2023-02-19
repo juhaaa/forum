@@ -66,3 +66,12 @@ def register_user(username, password):
     db.session.execute(sql, {"username":username, "password":hash_value})
     db.session.commit()
     return True
+
+def get_user_id(username):
+
+    # given username, returns id
+
+    sql = text("SELECT id FROM users WHERE username=:username")
+    result = db.session.execute(sql, {"username":username})
+    user_id = result.fetchone()
+    return user_id

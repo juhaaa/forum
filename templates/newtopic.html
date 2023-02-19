@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}New topic{% endblock %}
+{% block content %}
+{% if session.name %}
+<h2>Create new topic in {{zone.name}}</h2>
+<p>Title should be informative</p>
+    <form action="/newtopic/{{zone.name}}" method="post">
+        <input type="text" placeholder="Topic title" required autofocus name="title" maxlength="100">
+        <textarea name="content" placeholder="Your message" cols="30" rows="15"></textarea>
+        <input type="submit" value="Post new topic">
+    </form>
+{% endif %}   
+{% endblock %}

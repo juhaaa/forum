@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}New reply{% endblock %}
+{% block content %}
+{% if session.name %}
+<h2>Reply to:</h2>
+<div class="reply">
+<p><a href="/discussion/{{zone}}">{{zone}} /  </a><a href="/discussion/{{zone}}/{{topic_id}}">"{{title}}"</a></p>
+</div>
+    <form action="/reply/{{topic_id}}" method="post">
+        <textarea name="content" placeholder="Your message" cols="30" rows="15"></textarea>
+        <input type="submit" value="Reply">
+    </form>
+{% endif %}   
+{% endblock %}
+

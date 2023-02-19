@@ -1,6 +1,7 @@
 from app import app
 from flask import redirect, render_template, request, session, flash
 import discussion_querys
+import discussion_insert
 import users
 import admin_sql
 from db import db
@@ -29,7 +30,7 @@ def zone(name):
 @app.route("/discussion/<name>/<topic_id>")
 def topic(name, topic_id):
 
-    # Route displaying specific topic undr speicif zone given in url parameters
+    # Route displaying specific topic undr specific zone given in url parameters
 
     topic = discussion_querys.get_first_message(topic_id)
     replies =discussion_querys.get_replies(topic_id)
@@ -97,19 +98,45 @@ def admin_delete_reply(zone_name, topic_id, reply_id, username):
 
     return render_template("deletereply.html", zone_name=zone_name, topic_id=topic_id, reply_id=reply_id, username=username)
 
-@app.route("/new/<zone_id>")
-def new_topic(zone_id):
+@app.route("/newtopic/<zone_name>", methods=["GET", "POST"])
+def new_topic(zone_name):
 
     # Route for creating new topic
 
-    return f"New topic under zone {zone_id}"
+    zone = discussion_querys.get_zone_name(zone_name)
+    if request.method == 'POST':
+        title = request.form.get("title")
+        content = request.form.get("content")
+        user_id = users.get_user_id(session["name"])
+        url = "/discussion/" + zone_name
 
-@app.route("/reply/<topic_id>")
+        if discussion_insert.post_new_topic(zone.id, title, content, user_id.id):
+            flash("New topic created", "success")
+            return redirect(url)
+        else:
+            flash("Topic not created", "error")
+            return redirect(url)
+    return render_template("newtopic.html", zone=zone)
+
+@app.route("/reply/<topic_id>", methods=["GET", "POST"])
 def new_reply(topic_id):
 
     # Route for replying to a topic
 
-    return f"New reply under topic {topic_id}"
+    title, zone = discussion_querys.get_title_and_zone(topic_id)
+
+    if request.method == 'POST':
+        user = users.get_user_id(session["name"])
+        content = request.form.get("content")
+        url = "/discussion/" + zone + "/" + topic_id
+        if discussion_insert.reply_to_topic(user.id, content, topic_id):
+            flash("You replied successfully", "success")
+            return redirect(url)
+        else:
+            flash("Reply not posted", "error")
+            return redirect(url)
+
+    return render_template("reply.html", title=title, zone=zone, topic_id=topic_id)
 
 
 @app.route("/login", methods=["GET", "POST"])
