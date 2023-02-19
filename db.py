@@ -1,6 +1,6 @@
 from os import getenv
-from app import app
 from flask_sqlalchemy import SQLAlchemy
+from app import app
 
 
 # Init project database

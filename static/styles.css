@@ -185,6 +185,12 @@ input[type=radio]{
     
 }
 
+#buttons{
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+}
+
 .messages tr{
     border: none;
 }
@@ -214,7 +220,7 @@ input[type=radio]{
 .zones input{
     background-color: rgba(255, 0, 0, 0.15);
     display: inline;
-    margin: 5px;
+    margin: 7px;
     padding: 5px;
 }
 
@@ -225,7 +231,7 @@ input[type=radio]{
 .topics input{
     background-color: rgba(255, 0, 0, 0.15);
     display: inline;
-    margin: 5px;
+    margin: 7px;
     padding: 5px;
 }
 
@@ -237,13 +243,21 @@ input[type=radio]{
 .messages input{
     background-color: rgba(255, 0, 0, 0.15);
     display: inline;
-    margin: 5px;
+    margin: 7px;
     padding: 5px;
 }
 
 .messages input:hover{
     background-color: red;
 
+}
+
+#nav-buttonmod{
+    background-color: #0070476b;
+}
+
+#nav-buttonmod:hover{
+    background-color: #04AA6D;
 }
 
 .flash{

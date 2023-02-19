@@ -2,6 +2,7 @@ from flask import redirect, render_template, request, session, flash
 from app import app
 import discussion_querys
 import discussion_insert
+import discussion_update
 import users
 import admin_sql
 
@@ -206,3 +207,44 @@ def search():
     # Route for searching messages
 
     return "SEARCH"
+
+@app.route("/editreply/<name>/<topic_id>/<reply_id>/", methods=["GET", "POST"])
+def edit_reply(name, topic_id, reply_id):
+
+    # Route for modifying messages
+
+    username, content = discussion_querys.get_username_and_content(reply_id)
+    if request.method == 'POST':
+        content = request.form.get("content")
+        discussion_update.edit_reply(reply_id, content)
+        url = "/discussion/" + name + "/" + topic_id
+        flash("Message updated", "success")
+        return redirect(url)
+
+    return render_template("editreply.html",
+                            topic_id=topic_id,
+                            reply_id=reply_id,
+                            username=username,
+                            content=content,
+                            name=name)
+
+@app.route("/edittopic/<name>/<topic_id>", methods=["GET", "POST"])
+def edit_topic(name, topic_id):
+
+    # Route for modifying topics
+
+    title, content, username = discussion_querys.get_topic(topic_id)
+    if request.method == 'POST':
+        content = request.form.get("content")
+        title = request.form.get("title")
+        discussion_update.edit_topic(topic_id, content, title)
+        url = "/discussion/" + name
+        flash("Topic updated", "success")
+        return redirect(url)
+
+    return render_template("edittopic.html",
+                            username=username,
+                            name=name,
+                            topic_id=topic_id,
+                            title=title,
+                            content=content)

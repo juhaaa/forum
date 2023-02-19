@@ -14,16 +14,23 @@
     {% for topic in topics %}
     <div class="topics">
         <a href="/discussion/{{zone.name}}/{{topic.id}}">{{topic.title}}</a>
-        {% if session.admin %}
+        {% if session.name == topic.username or session.admin  %}
             <ul>
                 <li>
                     <p>Author: {{topic.username}} Started: {{topic.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</p>
                 </li>
+                {% if session.admin%}
                 <li>
                     <form id="nav-button" action="/deletetopic/{{zone.name}}/{{topic.id}}/{{topic.title}}">
                         <input type="submit" value="DEL">
                     </form> 
                 </li>
+                {% endif %}
+                <li>
+                    <form id="nav-button" action="/edittopic/{{zone.name}}/{{topic.id}}">
+                        <input id="nav-buttonmod" type="submit" value="MOD">
+                    </form>
+                </li>   
             </ul>   
         {% else%}
             <p>Author: {{topic.username}} Started: {{topic.created_at.strftime('%d-%m-%Y %H:%M:%S')}}</p> 

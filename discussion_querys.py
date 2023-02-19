@@ -1,5 +1,5 @@
-from db import db
 from sqlalchemy.sql import text
+from db import db
 
 
 def get_discussion_zones():
@@ -106,3 +106,38 @@ def get_title_and_zone(topic_id):
     result = db.session.execute(sql, {"topic_id":topic_id})
     title_and_zone = result.fetchone()
     return title_and_zone
+
+def get_username_and_content(reply_id):
+    """ Function retrieves username and text with specific reply id.
+
+    Args:
+        reply_id (Int): Id of a specific reply
+    
+    Returns:
+        Tuple: (username, content)
+    """
+
+    sql = text("""SELECT users.username, replies.content
+                FROM replies
+                LEFT JOIN users ON  users.id=replies.user_id WHERE replies.id=:reply_id
+                ORDER BY replies.created_at""")
+    result = db.session.execute(sql, {"reply_id":reply_id})
+    reply = result.fetchone()
+    return reply
+
+def get_topic(topic_id):
+    """Function delivers single topic details
+
+    Args:
+        topic_id (Int): Id of a specific topic
+
+    Returns:
+        Tuple: (title, content, username)
+    """
+    
+    sql = text("""SELECT t.title, t.content, u.username FROM topics t
+                LEFT JOIN users u ON u.id=t.user_id
+                WHERE t.id=:topic_id""")
+    result = db.session.execute(sql, {"topic_id":topic_id})
+    topic = result.fetchone()
+    return topic

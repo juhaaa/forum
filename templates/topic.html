@@ -35,13 +35,25 @@
                         <li>{{reply.username}}</li>
                         <li id="date">{{reply.created_at.strftime('%H:%M:%S')}}</li>
                         <li id="date">{{reply.created_at.strftime('%d-%m-%Y')}}</li>
-                        {% if session.admin %}
                         <li>
-                            <form id="nav-button" action="/deletereply/{{name}}/{{topic.id}}/{{reply.id}}/{{reply.username}}">
-                                <input type="submit" value="DEL">
-                            </form>
+                            <ul id="buttons">    
+                                <li>
+                                    {% if session.admin %}
+                                        <form id="nav-button" action="/deletereply/{{name}}/{{topic.id}}/{{reply.id}}/{{reply.username}}">
+                                                <input type="submit" value="DEL">
+                                        </form>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if session.name == reply.username or session.admin %}
+                                        <form id="nav-button" action="/editreply/{{name}}/{{topic.id}}/{{reply.id}}">
+                                            <input id="nav-buttonmod" type="submit" value="MOD">
+                                        </form>
+                                    {% endif %}
+                                </li>
+                            </ul>
                         </li>
-                        {% endif %}
+                        
                     </ul>
                 </th>
             </tr>   

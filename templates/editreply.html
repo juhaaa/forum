@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}Modify reply{% endblock %}
+{% block content %}
+{% if session.name == username or session.admin %}
+    <h2>Edit reply:</h2>
+    <form action="/editreply/{{name}}/{{topic_id}}/{{reply_id}}" method="post">
+        <textarea name="content" cols="30" rows="15"></textarea>
+        <input type="submit" value="Modify">
+    </form>
+
+    <script>
+        document.querySelector('textarea[name="content"]').value = "{{content}}";
+    </script>
+
+{% else %}
+    <p>You don't have rights</p>
+{% endif %}   
+{% endblock %}
