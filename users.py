@@ -1,10 +1,19 @@
-from db import db
 from sqlalchemy.sql import text
 from werkzeug.security import check_password_hash, generate_password_hash
+from db import db
+
 
 def check_login(username, password):
+    """ Check credentials
+        Retrieves hashed pw from database and compares
 
-    # Checking credentials
+    Args:
+        username (String): Username
+        password (String): PAssword
+
+    Returns:
+        Boolean: True if correct credentials
+    """
     sql = text("SELECT password FROM users WHERE username=:username")
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
@@ -17,13 +26,17 @@ def check_login(username, password):
 
 def check_admin(username):
 
-    # Check admin status
+    """Checks for users admin staus
+
+    Returns:
+        Boolean: True if admin
+    """
 
     sql = text("SELECT is_admin FROM users WHERE username=:username")
     result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
 
-    if user.is_admin == True:
+    if user.is_admin:
         return True
     return False
 
@@ -32,44 +45,76 @@ def check_admin(username):
 
 def check_passwords(password1, password2):
 
-    # checks that passwords match
-    
+    """ Function for checking user given passwords
+        when registering users
+
+    Args:
+        password1 (String): Users password proposal
+        passowrd2 (String): Should be same password second time
+
+    Returns:
+        Boolean: True if passwords match
+    """
+
     if password1 != password2:
         return False
     return True
 
 def check_username_length(username):
+    """ Function checks username length
 
-    # checks username length
+    Args:
+        username (String): Users username proposal
+
+
+    Returns:
+        Boolean: True if under 20 chars
+    """
 
     if len(username) <= 20:
         return True
     return False
 
 def check_username_availabillity(username):
-    
-    # Checks if username exists
+    """Checks username availability
+
+    Args:
+        username (String): Users username proposal
+
+    Returns:
+        Boolean: True if username doesnt exist in db
+    """
 
     sql = text("SELECT * FROM users WHERE username=:username")
     result = db.session.execute(sql, {"username":username})
-    user = result.fetchone()    
+    user = result.fetchone()
     if not user:
         return True
     return False
 
 def register_user(username, password):
+    """Registers user
 
-    # registers user
+    Args:
+        username (String): username
+        password (String): password
+
+    """
 
     hash_value = generate_password_hash(password)
     sql = text("INSERT INTO users (username, password) VALUES (:username, :password)")
     db.session.execute(sql, {"username":username, "password":hash_value})
     db.session.commit()
-    return True
 
 def get_user_id(username):
+    """Retrieves user id from db
 
-    # given username, returns id
+    Args:
+        username (String): username to be searched
+
+    Returns:
+        Int: user_id
+    """
 
     sql = text("SELECT id FROM users WHERE username=:username")
     result = db.session.execute(sql, {"username":username})

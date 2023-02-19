@@ -5,7 +5,7 @@
 <div class="delete">
     <h2>Delete zone:</h2>
     <p> {{name}}?</p>
-    <form action="/deletezone/{{id}}/{{name}}" method="post">
+    <form action="/deletezone/{{zone_id}}/{{name}}" method="post">
         <input type="radio" name="yes_no" value="yes">Yes</input>
         <input type="radio" name="yes_no" value="no" checked>No</input>
         <input type="submit" value="Submit">
