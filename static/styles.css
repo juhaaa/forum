@@ -13,7 +13,7 @@
 
 
 .container hr{
-    border: 1px  #6cb197;
+    border: 1px  #6cb1979f;
     border-radius: 2px;
     border-style: dashed;
     width: 30%;
@@ -151,7 +151,7 @@ input[type=radio]{
 
 .reply a{
     color: #555;
-    text-decoration: none;box shadow
+    text-decoration: none;
     font-size: 18px;
     
 }
@@ -168,7 +168,6 @@ input[type=radio]{
 }
 
 .messages table{
-    border-collapse:collapse;
     width: 100%;
     margin-top: 20px;
 }
@@ -198,14 +197,16 @@ input[type=radio]{
 }
 
 .messages td{
+    font-size: smaller;
     width: 80%;
-    border: dotted 2px #6cb197;
+    border: dotted 2px #6cb1979f;
     border-radius: 2px;
     padding: 20px;
     line-height: 1.3em;
     text-align: left;
     white-space: pre-line;
     vertical-align: top;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 }
 
 #date{
@@ -303,4 +304,3 @@ input[type=radio]{
         width: 50%;
     }
 }
-
