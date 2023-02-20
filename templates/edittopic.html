@@ -8,12 +8,15 @@
         <textarea name="content" cols="30" rows="15"></textarea>
         <input type="submit" value="Modify">
     </form>
+    <hr>
+    <p id="original-title">"{{title}}"</p>
+    <p id="original">"{{content}}"</p>
+    <hr>
 
     <script>
         document.querySelector('input[name="title"]').value = "{{title}}";
         document.querySelector('textarea[name="content"]').value = "{{content}}";
     </script>
-
 {% else %}
     <p>You don't have rights</p>
 {% endif %}   

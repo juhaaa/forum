@@ -1,5 +1,5 @@
 .container{
-    width: 80%;
+    width: 70%;
     margin: auto;
     overflow: hidden;
     text-align: center;
@@ -17,7 +17,6 @@
     border-style: dashed;
     width: 30%;
 }
-
 
 body {
     background-color: #e6e6e6;
@@ -159,8 +158,6 @@ input[type=radio]{
     color: red;
 }
 
-
-
 .messages ul{
     list-style: none;
 }
@@ -203,10 +200,6 @@ input[type=radio]{
     line-height: 1.3em;
     text-align: left;
 }
-
-
-
-
 
 #date{
     font-weight: 300;
@@ -273,15 +266,27 @@ input[type=radio]{
     color: rgb(3, 173, 3);
 }
 
+#original{
+    opacity: 0.5;
+    font-style: italic;
+    margin: 20%;
+    text-align:center;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    line-height: 1.2em;
+}
 
+#original-title{
+    opacity: 0.5;
+    font-style: italic;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
 
 @media(max-width: 600px){
-    #main{
-        width: 100%;
-        float: none;
-    }
-    #sidebar{
-        width: 100%;
+    .container{
+        width: 97%;
         float: none;
     }
 }
