@@ -45,6 +45,7 @@ input[type=submit], input[type=button]{
     padding: 12px 20px;
     text-decoration: none;
     cursor: pointer;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
 }
 
 input[type=submit]:hover, input[type=button]:hover{
@@ -150,7 +151,7 @@ input[type=radio]{
 
 .reply a{
     color: #555;
-    text-decoration: none;
+    text-decoration: none;box shadow
     font-size: 18px;
     
 }
@@ -183,7 +184,6 @@ input[type=radio]{
     vertical-align: top;
     border-bottom-right-radius: 30px;
     border-top-right-radius: 20px;
-    
 }
 
 
@@ -205,6 +205,7 @@ input[type=radio]{
     line-height: 1.3em;
     text-align: left;
     white-space: pre-line;
+    vertical-align: top;
 }
 
 #date{
@@ -297,3 +298,9 @@ input[type=radio]{
         float: none;
     }
 }
+@media(min-width: 2000px){
+    .container{
+        width: 50%;
+    }
+}
+
