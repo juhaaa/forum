@@ -117,6 +117,8 @@ input[type=radio]{
     color: red;
 }
 
+
+
 .topics a{
     color: #555;
     text-decoration: none;
@@ -184,6 +186,7 @@ input[type=radio]{
     
 }
 
+
 #buttons{
     margin: 0px;
     padding: 0px;
@@ -201,6 +204,7 @@ input[type=radio]{
     padding: 20px;
     line-height: 1.3em;
     text-align: left;
+    white-space: pre-line;
 }
 
 #date{
@@ -276,6 +280,7 @@ input[type=radio]{
     margin-top: 15px;
     margin-bottom: 25px;
     line-height: 1.2em;
+    white-space: pre-line;
 }
 
 #original-title{
