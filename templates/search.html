@@ -9,13 +9,11 @@
 </form>
 <div class="zones">
     <hr>
-    <ul>
     {% for topic in topics %}
-    <li><a href="/discussion/{{topic.name}}/{{topic.id}}">{{topic.name}} / {{topic.title}}</a></li>
-    <li><p>{{topic.content}}</p></li>
+    <a href="/discussion/{{topic.name}}/{{topic.id}}">{{topic.name}} / {{topic.title}}</a>
+    <p>{{topic.content}}</p>
     <hr>
     {% endfor%}
-    </ul>
 </div>
 {% endif %}
 {% if not topics %}
