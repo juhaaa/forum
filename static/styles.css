@@ -18,6 +18,9 @@
     border-style: dashed;
     width: 30%;
 }
+html, body{
+    min-height: 100%
+}
 
 body {
     background-color: #e6e6e6;
@@ -27,6 +30,7 @@ body {
     line-height: 2em;
     margin: 0px;
     margin-bottom: 50px;
+    
 }
 
 input, textarea {

@@ -27,3 +27,9 @@ CREATE TABLE replies (
   content TEXT NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE votes(
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users (id),
+  reply_id INTEGER REFERENCES replies(id) ON DELETE CASCADE
+);

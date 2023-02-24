@@ -35,6 +35,7 @@
                         <li>{{reply.username}}</li>
                         <li id="date">{{reply.created_at.strftime('%H:%M:%S')}}</li>
                         <li id="date">{{reply.created_at.strftime('%d-%m-%Y')}}</li>
+                        <li id="date">Likes: {{reply.votes}}</li>
                         <li>
                             <ul id="buttons">    
                                 <li>
@@ -48,6 +49,14 @@
                                     {% if session.name == reply.username or session.admin %}
                                         <form id="nav-button" action="/editreply/{{name}}/{{topic.id}}/{{reply.id}}">
                                             <input id="nav-buttonmod" type="submit" value="MOD">
+                                        </form>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    {% if session.name != reply.username %}
+                                        <form id="nav-button" action="/addlike/{{user_id}}/{{reply.id}}"  method="post">
+                                            <input id="nav-buttonmod" type="submit" value="LIKE">
+                                            <input type="hidden" name="next" value="{{request.url}}" />
                                         </form>
                                     {% endif %}
                                 </li>

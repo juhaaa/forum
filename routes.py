@@ -34,12 +34,14 @@ def discussion_topic(name, topic_id):
     # Route displaying specific topic undr specific zone given in url parameters
 
     topic = discussion_querys.get_first_message(topic_id)
-    replies =discussion_querys.get_replies(topic_id)
+    replies = discussion_querys.get_replies(topic_id)
+    user_id = users.get_user_id(session["name"])
     return render_template("/topic.html",
                             name=name,
                             topic_id=topic_id,
                             topic=topic,
-                            replies=replies)
+                            replies=replies,
+                            user_id=user_id[0])
 
 @app.route("/newzone", methods=["GET", "POST"])
 def admin_new_zone():
@@ -248,3 +250,15 @@ def edit_topic(name, topic_id):
                             topic_id=topic_id,
                             title=title,
                             content=content)
+                            
+@app.route("/addlike/<user_id>/<reply_id>", methods=["POST"])
+def add_like(user_id, reply_id):
+
+    # Route for liking replies
+    
+    if discussion_querys.check_like(user_id, reply_id):
+        flash("You have already liked this post", "error")
+        return redirect(request.form.get('next'))
+    discussion_insert.like_post(user_id, reply_id)
+    flash("Post liked", "success")
+    return redirect(request.form.get('next'))

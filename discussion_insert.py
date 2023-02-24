@@ -43,3 +43,9 @@ def reply_to_topic(user_id, content, topic_id):
         db.session.commit()
         return True
     return False
+
+def like_post(user_id, reply_id):
+    sql = text("""INSERT INTO votes (user_id, reply_id)
+                VALUES (:user_id, :reply_id)""")
+    db.session.execute(sql, {"user_id":user_id, "reply_id":reply_id})
+    db.session.commit()

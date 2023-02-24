@@ -79,13 +79,18 @@ def get_replies(topic_id):
         topic_id (int): id of parent topic
 
     Returns:
-        List: List of tuples (id, username, content, created_at, username)
+        List: List of tuples (id, username, content, created_at, user_id)
     """
 
-    sql = text("""SELECT replies.id, users.username, replies.content, replies.created_at
+    sql = text("""SELECT replies.id, users.username, replies.content, replies.created_at,
+                COUNT(votes.id) AS votes
                 FROM replies
-                LEFT JOIN users ON  users.id=replies.user_id WHERE topic_id=:topic_id
-                ORDER BY replies.created_at""")
+                LEFT JOIN users ON users.id=replies.user_id
+                LEFT JOIN votes ON votes.reply_id=replies.id
+                WHERE replies.topic_id=:topic_id
+                GROUP BY replies.id, users.username, replies.content, replies.created_at
+                ORDER BY replies.created_at
+                """)
     result = db.session.execute(sql, {"topic_id":topic_id})
     replies = result.fetchall()
     return replies
@@ -141,3 +146,12 @@ def get_topic(topic_id):
     result = db.session.execute(sql, {"topic_id":topic_id})
     topic = result.fetchone()
     return topic
+
+def check_like(user_id, reply_id):
+    sql = text("""SELECT id FROM votes
+                WHERE user_id=:user_id AND reply_id=:reply_id""")
+    result = db.session.execute(sql, {"user_id":user_id, "reply_id":reply_id})
+    like = result.fetchone()
+    if like:
+        return True
+    return False
