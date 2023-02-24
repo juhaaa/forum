@@ -13,13 +13,13 @@ python/flask and PostgreSQL while trying these techniques for the first time.
 - In addition to basic user capabilities, admin is able to delete messages users and topics.
 - Admins are also able to add discussion zone for different topics.
 - only visible for registered users.
-- Message timestamping. 
+- Message timestamping.
+- Liking other users replies, not you own.
+- Deleting discussion zones
 
 ### TODO:
 - Deleting users, or ability to post?
-- Deleting discussion zones, or visibility?
 - Search- function.
-- still missing one table.
 
 
 ## Interface
@@ -45,11 +45,15 @@ python/flask and PostgreSQL while trying these techniques for the first time.
 
 - Implementing basic queries to serve forum structure
 
-### week 5
+### Week 5
 
 - Ability to post topics and messages. Admin can create new zones.
 - Users can modify their own messages and topics. Admins are able to do that and also delete every message and topic.
 - Looks like a forum.
+
+### Week 6
+
+- Users can now like other users posts. Added database table votes to help with this.
 
 ## How to open?
 
