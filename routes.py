@@ -203,12 +203,18 @@ def register():
     return render_template("register.html")
 
 
-@app.route("/search")
+@app.route("/search", methods=["GET"])
 def search():
 
     # Route for searching messages
 
-    return "SEARCH"
+    q = request.args.get("q")
+    print(q)
+    if q:
+        topics = discussion_querys.search(q)
+
+        return render_template("search.html", topics=topics)
+    return render_template("search.html")
 
 @app.route("/editreply/<name>/<topic_id>/<reply_id>/", methods=["GET", "POST"])
 def edit_reply(name, topic_id, reply_id):
@@ -255,7 +261,7 @@ def edit_topic(name, topic_id):
 def add_like(user_id, reply_id):
 
     # Route for liking replies
-    
+
     if discussion_querys.check_like(user_id, reply_id):
         flash("You have already liked this post", "error")
         return redirect(request.form.get('next'))

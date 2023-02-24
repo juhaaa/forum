@@ -1,8 +1,7 @@
 # Forum app using python/flask
 
 - This project is for University of Helsinki TSOHA course.
-- The goal of this project is to develop a traditional discussion forum using
-python/flask and PostgreSQL while trying these techniques for the first time.
+- The goal of this project is to develop a traditional discussion forum using python/flask and PostgreSQL while trying these techniques for the first time.
 - Documentation and code will be written in english.
 ## Intended features
 
@@ -16,10 +15,10 @@ python/flask and PostgreSQL while trying these techniques for the first time.
 - Message timestamping.
 - Liking other users replies, not you own.
 - Deleting discussion zones
+- Search for topics and first messages
 
 ### TODO:
 - Deleting users, or ability to post?
-- Search- function.
 
 
 ## Interface
@@ -41,7 +40,7 @@ python/flask and PostgreSQL while trying these techniques for the first time.
 - Project somewhat on its way. Basic html design is pretty much done and I'm pretty sure my schema is fine. Now there remains implementing almost all database functionality.
 - Still trying to figure out the proper structure.
 
-### week 4
+### Week 4
 
 - Implementing basic queries to serve forum structure
 
@@ -54,6 +53,7 @@ python/flask and PostgreSQL while trying these techniques for the first time.
 ### Week 6
 
 - Users can now like other users posts. Added database table votes to help with this.
+- Implementation of search.
 
 ## How to open?
 

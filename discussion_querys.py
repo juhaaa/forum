@@ -79,7 +79,7 @@ def get_replies(topic_id):
         topic_id (int): id of parent topic
 
     Returns:
-        List: List of tuples (id, username, content, created_at, user_id)
+        List: List of tuples (id, username, content, created_at, user_id, votes count)
     """
 
     sql = text("""SELECT replies.id, users.username, replies.content, replies.created_at,
@@ -155,3 +155,12 @@ def check_like(user_id, reply_id):
     if like:
         return True
     return False
+
+def search(q):
+    sql = text("""SELECT t.id, t.title, t.content, d.name
+                FROM topics t
+                LEFT JOIN discussion_zones d ON d.id=t.discussion_zone_id
+                WHERE t.content ILIKE :q OR t.title ILIKE :q""")
+    result = db.session.execute(sql, {"q":"%"+q+"%"})
+    topics = result.fetchall()
+    return topics

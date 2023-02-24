@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Search{% endblock %}
+{% block content %}
+{% if session.name %}
+<h2>Search</h2>
+<form action="/search" method="get">
+    <input autocomplete="off" autofocus name="q" placeholder="Query" type="text">
+    <input type="submit" value="Search">
+</form>
+<div class="zones">
+    <hr>
+    <ul>
+    {% for topic in topics %}
+    <li><a href="/discussion/{{topic.name}}/{{topic.id}}">{{topic.name}} / {{topic.title}}</a></li>
+    <li><p>{{topic.content}}</p></li>
+    <hr>
+    {% endfor%}
+    </ul>
+</div>
+{% endif %}
+{% if not topics %}
+<h2>no results</h2>
+{% endif %}
+{% endblock %}

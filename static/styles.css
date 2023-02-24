@@ -122,7 +122,19 @@ input[type=radio]{
     color: red;
 }
 
+.zones p{
+    opacity: 0.5;
+    font-size: small;
+    line-height: 1em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
 
+.zones ul{
+    list-style: none;
+}
 
 .topics a{
     color: #555;
