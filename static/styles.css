@@ -11,6 +11,9 @@
     
 }
 
+.container p{
+    font-weight: 275;
+}
 
 .container hr{
     border: 1px  #6cb1979f;

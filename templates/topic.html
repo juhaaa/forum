@@ -35,7 +35,7 @@
                         <li>{{reply.username}}</li>
                         <li id="date">{{reply.created_at.strftime('%H:%M:%S')}}</li>
                         <li id="date">{{reply.created_at.strftime('%d-%m-%Y')}}</li>
-                        <li id="date">Likes: {{reply.votes}}</li>
+                        <li id="date">Likes: {{reply.likes}}</li>
                         <li>
                             <ul id="buttons">    
                                 <li>
@@ -53,7 +53,7 @@
                                     {% endif %}
                                 </li>
                                 <li>
-                                    {% if session.name != reply.username %}
+                                    {% if session.name != reply.username and not reply.liked %}
                                         <form id="nav-button" action="/addlike/{{user_id}}/{{reply.id}}"  method="post">
                                             <input id="nav-buttonmod" type="submit" value="LIKE">
                                             <input type="hidden" name="next" value="{{request.url}}" />

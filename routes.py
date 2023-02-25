@@ -34,8 +34,8 @@ def discussion_topic(name, topic_id):
     # Route displaying specific topic undr specific zone given in url parameters
 
     topic = discussion_querys.get_first_message(topic_id)
-    replies = discussion_querys.get_replies(topic_id)
     user_id = users.get_user_id(session["name"])
+    replies = discussion_querys.get_replies(topic_id, user_id[0])
     return render_template("/topic.html",
                             name=name,
                             topic_id=topic_id,

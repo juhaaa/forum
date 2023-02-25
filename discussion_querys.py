@@ -71,7 +71,7 @@ def get_first_message(topic_id):
     topic = result.fetchone()
     return topic
 
-def get_replies(topic_id):
+def get_replies(topic_id, user_id):
     """ With parameter topic_id, returns all replies
         belonging under that topic
 
@@ -83,15 +83,15 @@ def get_replies(topic_id):
     """
 
     sql = text("""SELECT replies.id, users.username, replies.content, replies.created_at,
-                COUNT(votes.id) AS votes
-                FROM replies
-                LEFT JOIN users ON users.id=replies.user_id
-                LEFT JOIN votes ON votes.reply_id=replies.id
-                WHERE replies.topic_id=:topic_id
-                GROUP BY replies.id, users.username, replies.content, replies.created_at
-                ORDER BY replies.created_at
-                """)
-    result = db.session.execute(sql, {"topic_id":topic_id})
+                        COUNT(votes.id) AS likes,
+                        CASE WHEN (SELECT COUNT(*) FROM votes WHERE user_id=:user_id AND reply_id=replies.id) > 0 THEN TRUE ELSE FALSE END AS liked
+                    FROM replies
+                    LEFT JOIN users ON users.id=replies.user_id
+                    LEFT JOIN votes ON votes.reply_id=replies.id
+                    WHERE replies.topic_id=:topic_id
+                    GROUP BY replies.id, users.username, replies.content, replies.created_at
+                    ORDER BY replies.created_at""")
+    result = db.session.execute(sql, {"topic_id": topic_id, "user_id": user_id})
     replies = result.fetchall()
     return replies
 
