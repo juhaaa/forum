@@ -72,25 +72,34 @@ def get_first_message(topic_id):
     return topic
 
 def get_replies(topic_id, user_id):
-    """ With parameter topic_id, returns all replies
+    """ With parameters topic_id and user_id returns all replies
         belonging under that topic
 
     Args:
         topic_id (int): id of parent topic
+        user_id (int): id of current user
 
     Returns:
-        List: List of tuples (id, username, content, created_at, user_id, votes count)
+        List: List of tuples (id,
+                            username,
+                            content,
+                            created_at,
+                            user_id,
+                            likes,
+                            liked)
     """
 
     sql = text("""SELECT replies.id, users.username, replies.content, replies.created_at,
-                        COUNT(votes.id) AS likes,
-                        CASE WHEN (SELECT COUNT(*) FROM votes WHERE user_id=:user_id AND reply_id=replies.id) > 0 THEN TRUE ELSE FALSE END AS liked
-                    FROM replies
-                    LEFT JOIN users ON users.id=replies.user_id
-                    LEFT JOIN votes ON votes.reply_id=replies.id
-                    WHERE replies.topic_id=:topic_id
-                    GROUP BY replies.id, users.username, replies.content, replies.created_at
-                    ORDER BY replies.created_at""")
+                COUNT(votes.id) AS likes,
+                CASE WHEN
+                (SELECT COUNT(*) FROM votes WHERE user_id=:user_id AND reply_id=replies.id) > 0
+                THEN TRUE ELSE FALSE END AS liked
+                FROM replies
+                LEFT JOIN users ON users.id=replies.user_id
+                LEFT JOIN votes ON votes.reply_id=replies.id
+                WHERE replies.topic_id=:topic_id
+                GROUP BY replies.id, users.username, replies.content, replies.created_at
+                ORDER BY replies.created_at""")
     result = db.session.execute(sql, {"topic_id": topic_id, "user_id": user_id})
     replies = result.fetchall()
     return replies

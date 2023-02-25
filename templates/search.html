@@ -2,21 +2,26 @@
 {% block title %}Search{% endblock %}
 {% block content %}
 {% if session.name %}
-<h2>Search</h2>
-<form action="/search" method="get">
-    <input autocomplete="off" autofocus name="q" placeholder="Query" type="text">
-    <input type="submit" value="Search">
-</form>
-<div class="zones">
-    <hr>
-    {% for topic in topics %}
-    <a href="/discussion/{{topic.name}}/{{topic.id}}">{{topic.name}} / {{topic.title}}</a>
-    <p>{{topic.content}}</p>
-    <hr>
-    {% endfor%}
-</div>
-{% endif %}
-{% if not topics %}
-<h2>no results</h2>
+    <h2>Search</h2>
+    <form action="/search" method="get">
+        <input autocomplete="off" autofocus name="q" placeholder="Query" type="text">
+        <input type="submit" value="Search">
+    </form>
+    <div class="zones">
+        <hr>
+        {% for topic in topics %}
+        <a href="/discussion/{{topic.name}}/{{topic.id}}">{{topic.name}} / {{topic.title}}</a>
+        <p>{{topic.content}}</p>
+        <hr>
+        {% endfor%}
+    </div>
+    {% if not topics %}
+        <h2>no results</h2>
+    {% endif %}
+{% else %}
+    <div class="zones">
+        <br>
+            <a href="/login">Please log in</a>
+    </div>
 {% endif %}
 {% endblock %}

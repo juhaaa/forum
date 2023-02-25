@@ -10,6 +10,11 @@
         <textarea name="content" placeholder="Your message" cols="30" rows="15"></textarea>
         <input type="submit" value="Reply">
     </form>
+{% else %}
+    <div class="zones">
+        <br>
+        <a href="/login">Please log in</a>
+    </div>
 {% endif %}   
 {% endblock %}
 

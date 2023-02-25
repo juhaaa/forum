@@ -7,5 +7,7 @@
         <input type="text" placeholder="Zone name" required autofocus name="zone_name" maxlength="50">
         <input type="submit" value="Create zone">
     </form>
+{% else %}
+    <p>You don't have rights</p>
 {% endif %}   
 {% endblock %}
