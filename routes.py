@@ -127,9 +127,42 @@ def admin_users():
     # route for admin to view and moderate users
 
     if session["admin"]:
-        userslist = admin_sql.get_users_list()
-        return render_template("users.html", users=userslist)
+        if request.method == "GET":
+            name = request.args.get("q")
+            if not name:
+                name = ""
+            userslist = admin_sql.get_users_list()
+            return render_template("users.html", users=userslist, name=name)
     return render_template("users.html")
+
+@app.route("/ban", methods=["POST"])
+def admin_ban():
+
+    # Route for banning users
+
+    if session["csrf_token"] != request.form.get("csrf_token"):
+        abort(403)
+    if session["admin"]:
+        id_name = (request.form.get("id"), request.form.get("name"))
+        admin_sql.ban_user(id_name[0])
+        flash(f"Banned user {id_name}", "success")
+        return redirect("/users")
+
+
+@app.route("/unban", methods=["POST"])
+def admin_unban():
+
+    # Route for unbanning users
+
+    if session["csrf_token"] != request.form.get("csrf_token"):
+        abort(403)
+    if session["admin"]:
+        id_name = (request.form.get("id"), request.form.get("name"))
+        admin_sql.unban_user(id_name[0])
+        flash(f"Unbanned user {id_name}", "success")
+        return redirect("/users")
+
+
 
 
 @app.route("/newtopic/<zone_name>", methods=["GET", "POST"])

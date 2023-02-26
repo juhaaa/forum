@@ -1,17 +1,17 @@
 {% extends "layout.html" %}
 {% block title %}Discussion{% endblock %}
-{% block action%}
-    <form id="nav-button" action="/newuser">
-    <input type="submit" value="New user">
-    </form>
-{% endblock %}
 {% block content %}
 {% if session.admin %}
     <div class="topic-header">
         <h2>Users</h2>
     </div>
+    <form action="/users" method="get">
+        <input autocomplete="off" autofocus name="q" placeholder="Empty search returns everyone" type="text">
+        <input type="submit" value="Search">
+    </form>
     <hr>
     {% for user in users %}
+    {% if name|upper in user.username or name|lower in user.username %}
     <div class="topics">
         <h2 id="username">{{user.username}}</h2>
         <ul>
@@ -20,13 +20,19 @@
             </li>
             {% if not user.banned %}
             <li>
-                <form id="nav-button" action="/ban/{{user.id}}">
+                <form id="nav-button" action="/ban" method="post">
+                    <input type="hidden" name="id" value="{{user.id}}">
+                    <input type="hidden" name="name" value="{{user.username}}">
+                    <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
                     <input type="submit" value="Ban">
                 </form> 
             </li>
             {% else %}
             <li>
-                <form id="nav-button" action="/unban/{{user.id}}">
+                <form id="nav-button" action="/unban" method="post">
+                    <input type="hidden" name="id" value="{{user.id}}">
+                    <input type="hidden" name="name" value="{{user.username}}">
+                    <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
                     <input id="nav-buttonmod" type="submit" value="Undo">
                 </form>
             </li>
@@ -35,6 +41,7 @@
         <p>Id: {{user.id}} -- Admin status: {{user.is_admin}}</p>
     </div>
     <hr>
+    {% endif %}
     {% endfor %}
 {% else %}
     <p>You don't have rights</p>

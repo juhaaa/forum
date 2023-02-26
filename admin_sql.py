@@ -51,7 +51,7 @@ def get_users_list():
         List: list of tuples (id, username, is_admin, banned)     
     """
 
-    sql = text("SELECT id, username, is_admin, banned FROM users")
+    sql = text("SELECT id, username, is_admin, banned FROM users ORDER BY banned DESC, username")
     result = db.session.execute(sql)
     users = result.fetchall()
     return users
