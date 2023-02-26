@@ -322,6 +322,9 @@ input[type=radio]{
         width: 97%;
         float: none;
     }
+    #navbar #nav-button{
+        margin-left: -10px;
+    }
 }
 
 @media screen and (min-width: 992px) {

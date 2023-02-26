@@ -17,10 +17,11 @@
 - Deleting discussion zones
 - Search for topics and first messages
 - Csrf- tokens
+- Banning users
 
 ### TODO:
 - error handling
-- Deleting users, or ability to post?
+- Banning users does not affect anything
 
 
 ## Interface
@@ -57,6 +58,10 @@
 - Users can now like other users posts. Added database table votes to help with this.
 - Implementation of search.
 - Added csrf tokens and backend user checks to routes.
+
+### Week 6
+
+- Admins can now ban/unban users.
 
 ## How to open?
 
