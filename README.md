@@ -59,7 +59,7 @@
 - Implementation of search.
 - Added csrf tokens and backend user checks to routes.
 
-### Week 6
+### Week 7
 
 - Admins can now ban/unban users.
 
