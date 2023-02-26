@@ -11,13 +11,15 @@
 - Messages can also be modified.
 - In addition to basic user capabilities, admin is able to delete messages users and topics.
 - Admins are also able to add discussion zone for different topics.
-- only visible for registered users.
+- Only visible for registered users.
 - Message timestamping.
 - Liking other users replies, not you own.
 - Deleting discussion zones
 - Search for topics and first messages
+- Csrf- tokens
 
 ### TODO:
+- error handling
 - Deleting users, or ability to post?
 
 
@@ -54,6 +56,7 @@
 
 - Users can now like other users posts. Added database table votes to help with this.
 - Implementation of search.
+- Added csrf tokens and backend user checks to routes.
 
 ## How to open?
 
