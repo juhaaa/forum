@@ -5,6 +5,7 @@
 <h2>Create new discussion zone</h2>
     <form action="/newzone" method="post">
         <input type="text" placeholder="Zone name" required autofocus name="zone_name" maxlength="50">
+        <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
         <input type="submit" value="Create zone">
     </form>
 {% else %}

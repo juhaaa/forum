@@ -6,6 +6,7 @@
     <form action="/edittopic/{{name}}/{{topic_id}}" method="post">
         <input type="text" required autofocus name="title" maxlength="100">
         <textarea name="content" cols="30" rows="15">{{content}}</textarea>
+        <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
         <input type="submit" value="Modify">
     </form>
     <hr>

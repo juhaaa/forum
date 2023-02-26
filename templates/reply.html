@@ -8,6 +8,7 @@
 </div>
     <form action="/reply/{{topic_id}}" method="post">
         <textarea name="content" placeholder="Your message" cols="30" rows="15"></textarea>
+        <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
         <input type="submit" value="Reply">
     </form>
 {% else %}

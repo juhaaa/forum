@@ -5,6 +5,7 @@
     <h2>Edit reply:</h2>
     <form action="/editreply/{{name}}/{{topic_id}}/{{reply_id}}" method="post">
         <textarea name="content" cols="30" rows="15">{{content}}</textarea>
+        <input type="hidden" name="csrf_token" value="{{session.csrf_token}}">
         <input type="submit" value="Modify">
     </form>
     <hr>

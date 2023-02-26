@@ -1,4 +1,5 @@
-from flask import redirect, render_template, request, session, flash
+from secrets import token_hex
+from flask import redirect, render_template, request, session, flash, abort
 from app import app
 import discussion_querys
 import discussion_insert
@@ -53,6 +54,8 @@ def admin_new_zone():
     # Route for admin to create new discussion zone
     if session["admin"]:
         if request.method == 'POST':
+            if session["csrf_token"] != request.form.get("csrf_token"):
+                abort(403)
             zone_name = request.form.get("zone_name")
             if admin_sql.add_new_zone(zone_name):
                 flash(f"Zone {zone_name} created", "success")
@@ -68,6 +71,8 @@ def admin_delete_zone(zone_id, name):
 
     if session["admin"]:
         if request.method == 'POST':
+            if session["csrf_token"] != request.form.get("csrf_token"):
+                abort(403)
             if request.form.get("yes_no") == "yes":
                 admin_sql.delete_zone(zone_id)
                 flash(f"Zone {name} deleted.", "success")
@@ -82,6 +87,8 @@ def admin_delete_topic(topic_id, title, zone_name):
 
     if session["admin"]:
         if request.method == 'POST':
+            if session["csrf_token"] != request.form.get("csrf_token"):
+                abort(403)
             url = "/discussion/" + zone_name
             if request.form.get("yes_no") == "yes":
                 admin_sql.delete_topic(topic_id)
@@ -98,6 +105,8 @@ def admin_delete_reply(zone_name, topic_id, reply_id, username):
 
     if session["admin"]:
         if request.method == 'POST':
+            if session["csrf_token"] != request.form.get("csrf_token"):
+                abort(403)
             url = "/discussion/" + zone_name + "/" + topic_id
             if request.form.get("yes_no") == "yes":
                 admin_sql.delete_reply(reply_id)
@@ -118,11 +127,12 @@ def new_topic(zone_name):
     if session["name"]:
         zone = discussion_querys.get_zone_name(zone_name)
         if request.method == 'POST':
+            if session["csrf_token"] != request.form.get("csrf_token"):
+                abort(403)
             title = request.form.get("title")
             content = request.form.get("content")
             user_id = users.get_user_id(session["name"])
             url = "/discussion/" + zone_name
-
             if discussion_insert.post_new_topic(zone.id, title, content, user_id.id):
                 flash("New topic created", "success")
                 return redirect(url)
@@ -139,8 +149,9 @@ def new_reply(topic_id):
 
     if session["name"]:
         title, zone = discussion_querys.get_title_and_zone(topic_id)
-
         if request.method == 'POST':
+            if session["csrf_token"] != request.form.get("csrf_token"):
+                abort(403)
             user = users.get_user_id(session["name"])
             content = request.form.get("content")
             url = "/discussion/" + zone + "/" + topic_id
@@ -149,7 +160,6 @@ def new_reply(topic_id):
                 return redirect(url)
             flash("Reply not posted", "error")
             return redirect(url)
-
         return render_template("reply.html", title=title, zone=zone, topic_id=topic_id)
     return render_template("reply.html")
 
@@ -163,6 +173,7 @@ def login():
         password = request.form.get("password")
         if users.check_login(username, password):
             session["name"] = username
+            session["csrf_token"] = token_hex(16)
             if users.check_admin(username):
                 flash("Admin logged in", "success")
                 session["admin"] = True
@@ -234,6 +245,8 @@ def edit_reply(name, topic_id, reply_id):
     username, content = discussion_querys.get_username_and_content(reply_id)
     if session["name"] == username or session["admin"]:
         if request.method == 'POST':
+            if session["csrf_token"] != request.form.get("csrf_token"):
+                abort(403)
             content = request.form.get("content")
             discussion_update.edit_reply(reply_id, content)
             url = "/discussion/" + name + "/" + topic_id
@@ -256,6 +269,8 @@ def edit_topic(name, topic_id):
     title, content, username = discussion_querys.get_topic(topic_id)
     if session["name"] == username or session["admin"]:
         if request.method == 'POST':
+            if session["csrf_token"] != request.form.get("csrf_token"):
+                abort(403)
             content = request.form.get("content")
             title = request.form.get("title")
             discussion_update.edit_topic(topic_id, content, title)
