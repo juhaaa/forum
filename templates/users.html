@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}Discussion{% endblock %}
+{% block action%}
+    <form id="nav-button" action="/newuser">
+    <input type="submit" value="New user">
+    </form>
+{% endblock %}
+{% block content %}
+{% if session.admin %}
+    <div class="topic-header">
+        <h2>Users</h2>
+    </div>
+    <hr>
+    {% for user in users %}
+    <div class="topics">
+        <h2 id="username">{{user.username}}</h2>
+        <ul>
+            <li>
+                <p>Banned: {{user.banned}}</p>
+            </li>
+            {% if not user.banned %}
+            <li>
+                <form id="nav-button" action="/ban/{{user.id}}">
+                    <input type="submit" value="Ban">
+                </form> 
+            </li>
+            {% else %}
+            <li>
+                <form id="nav-button" action="/unban/{{user.id}}">
+                    <input id="nav-buttonmod" type="submit" value="Undo">
+                </form>
+            </li>
+            {% endif%}  
+        </ul>
+        <p>Id: {{user.id}} -- Admin status: {{user.is_admin}}</p>
+    </div>
+    <hr>
+    {% endfor %}
+{% else %}
+    <p>You don't have rights</p>
+{% endif%}
+{% endblock %}

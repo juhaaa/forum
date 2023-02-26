@@ -1,5 +1,5 @@
 .container{
-    width: 70%;
+    width: 80%;
     margin: auto;
     overflow: hidden;
     text-align: center;
@@ -168,6 +168,11 @@ input[type=radio]{
     display:inline-table;
 }
 
+.topics #username{
+    font-size: medium;
+    margin: 0;
+}
+
 .reply a{
     color: #555;
     text-decoration: none;
@@ -318,8 +323,26 @@ input[type=radio]{
         float: none;
     }
 }
-@media(min-width: 2000px){
-    .container{
+
+@media screen and (min-width: 992px) {
+    .container {
+        width: 60%;
+    }
+} 
+@media screen and (min-width: 1280px) {
+    .container {
         width: 50%;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .container {
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 3000px) {
+    .container {
+        width: 30%;
     }
 }

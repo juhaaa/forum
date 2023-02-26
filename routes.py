@@ -120,10 +120,23 @@ def admin_delete_reply(zone_name, topic_id, reply_id, username):
                             reply_id=reply_id,
                             username=username)
 
+
+@app.route("/users")
+def admin_users():
+
+    # route for admin to view and moderate users
+
+    if session["admin"]:
+        userslist = admin_sql.get_users_list()
+        return render_template("users.html", users=userslist)
+    return render_template("users.html")
+
+
 @app.route("/newtopic/<zone_name>", methods=["GET", "POST"])
 def new_topic(zone_name):
 
     # Route for creating new topic
+
     if session["name"]:
         zone = discussion_querys.get_zone_name(zone_name)
         if request.method == 'POST':
@@ -190,7 +203,7 @@ def login():
 def logout():
 
     # Route for logout
-
+    session["csrf_token"] = None
     session["name"] = None
     session["admin"] = None
     return redirect("/")
