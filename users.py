@@ -120,3 +120,39 @@ def get_user_id(username):
     result = db.session.execute(sql, {"username":username})
     user_id = result.fetchone()
     return user_id
+
+def get_banned_status(username):
+    """Retrieves boolean of column banned in table user
+
+    Args:
+        username (String): username
+
+    Returns:
+        Boolean: True if banned
+    """
+
+    sql = text("SELECT banned FROM users WHERE username=:username")
+    result = db.session.execute(sql, {"username":username})
+    bool = result.fetchone()
+    return bool.banned
+
+def ok_to_post(username, csfr1, csfr2):
+    """Checks posting rights
+
+    Args:
+        username (String): username
+        csfr1 (String): session token
+        csfr2 (String): token via POST
+
+    Returns:
+        Boolean: True if user checks out
+    """
+
+    banned, csfr = False, False
+    if get_banned_status(username):
+        banned = True
+    if csfr1 == csfr2:
+        csfr = True
+    if not banned and csfr:
+        return True
+    return False

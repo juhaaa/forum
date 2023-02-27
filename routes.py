@@ -173,11 +173,13 @@ def new_topic(zone_name):
     if session["name"]:
         zone = discussion_querys.get_zone_name(zone_name)
         if request.method == 'POST':
-            if session["csrf_token"] != request.form.get("csrf_token"):
+            if not users.ok_to_post(session["name"],
+                                    session["csrf_token"],
+                                    request.form.get("csrf_token")):
                 abort(403)
+            user_id = users.get_user_id(session["name"])
             title = request.form.get("title")
             content = request.form.get("content")
-            user_id = users.get_user_id(session["name"])
             url = "/discussion/" + zone_name
             if discussion_insert.post_new_topic(zone.id, title, content, user_id.id):
                 flash("New topic created", "success")
@@ -196,7 +198,9 @@ def new_reply(topic_id):
     if session["name"]:
         title, zone = discussion_querys.get_title_and_zone(topic_id)
         if request.method == 'POST':
-            if session["csrf_token"] != request.form.get("csrf_token"):
+            if not users.ok_to_post(session["name"],
+                                    session["csrf_token"],
+                                    request.form.get("csrf_token")):
                 abort(403)
             user = users.get_user_id(session["name"])
             content = request.form.get("content")
@@ -291,7 +295,9 @@ def edit_reply(name, topic_id, reply_id):
     username, content = discussion_querys.get_username_and_content(reply_id)
     if session["name"] == username or session["admin"]:
         if request.method == 'POST':
-            if session["csrf_token"] != request.form.get("csrf_token"):
+            if not users.ok_to_post(session["name"],
+                                    session["csrf_token"],
+                                    request.form.get("csrf_token")):
                 abort(403)
             content = request.form.get("content")
             discussion_update.edit_reply(reply_id, content)
@@ -315,7 +321,9 @@ def edit_topic(name, topic_id):
     title, content, username = discussion_querys.get_topic(topic_id)
     if session["name"] == username or session["admin"]:
         if request.method == 'POST':
-            if session["csrf_token"] != request.form.get("csrf_token"):
+            if not users.ok_to_post(session["name"],
+                                    session["csrf_token"],
+                                    request.form.get("csrf_token")):
                 abort(403)
             content = request.form.get("content")
             title = request.form.get("title")
