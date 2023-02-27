@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Sorry!{% endblock %}
+{% block action%}
+    <form id="nav-button" action="/newtopic/">
+    <input type="submit" value="New topic">
+    </form>
+{% endblock %}
+{% block content %}
+<hr>
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+<p>Sorry for the inconvenience!</p>
+{% endblock %}
