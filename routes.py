@@ -141,12 +141,13 @@ def admin_ban():
     # Route for banning users
 
     if session["csrf_token"] != request.form.get("csrf_token"):
-        abort(403)
+        return abort(403)
     if session["admin"]:
         id_name = (request.form.get("id"), request.form.get("name"))
         admin_sql.ban_user(id_name[0])
         flash(f"Banned user {id_name}", "success")
         return redirect("/users")
+    return abort(403)
 
 
 @app.route("/unban", methods=["POST"])
@@ -161,6 +162,7 @@ def admin_unban():
         admin_sql.unban_user(id_name[0])
         flash(f"Unbanned user {id_name}", "success")
         return redirect("/users")
+    return abort(403)
 
 
 
@@ -304,13 +306,12 @@ def edit_reply(name, topic_id, reply_id):
             url = "/discussion/" + name + "/" + topic_id
             flash("Message updated", "success")
             return redirect(url)
-        elif request.method == "GET":
-            return render_template("editreply.html",
-                                    topic_id=topic_id,
-                                    reply_id=reply_id,
-                                    username=username,
-                                    content=content,
-                                    name=name)
+        return render_template("editreply.html",
+                                topic_id=topic_id,
+                                reply_id=reply_id,
+                                username=username,
+                                content=content,
+                                name=name)
     return render_template("editreply.html")
 
 @app.route("/edittopic/<name>/<topic_id>", methods=["GET", "POST"])
@@ -331,15 +332,14 @@ def edit_topic(name, topic_id):
             url = "/discussion/" + name
             flash("Topic updated", "success")
             return redirect(url)
-        elif request.method == "GET":
-            return render_template("edittopic.html",
-                                    username=username,
-                                    name=name,
-                                    topic_id=topic_id,
-                                    title=title,
-                                    content=content)
+        return render_template("edittopic.html",
+                                username=username,
+                                name=name,
+                                topic_id=topic_id,
+                                title=title,
+                                content=content)
     return render_template("edittopic.html")
-                            
+
 @app.route("/addlike/<user_id>/<reply_id>", methods=["POST"])
 def add_like(user_id, reply_id):
 

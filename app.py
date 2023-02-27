@@ -11,4 +11,3 @@ app.config["SESSION_PERMANENT"] = False
 # Import routes module after init
 
 import routes
-

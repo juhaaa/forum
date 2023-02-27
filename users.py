@@ -133,8 +133,8 @@ def get_banned_status(username):
 
     sql = text("SELECT banned FROM users WHERE username=:username")
     result = db.session.execute(sql, {"username":username})
-    bool = result.fetchone()
-    return bool.banned
+    boolean = result.fetchone()
+    return boolean.banned
 
 def ok_to_post(username, csfr1, csfr2):
     """Checks posting rights

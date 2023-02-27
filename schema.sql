@@ -2,7 +2,8 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(20) NOT NULL UNIQUE,
   password VARCHAR(120) NOT NULL,
-  is_admin BOOLEAN DEFAULT FALSE
+  is_admin BOOLEAN DEFAULT FALSE,
+  banned BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE discussion_zones (

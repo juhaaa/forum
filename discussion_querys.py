@@ -126,7 +126,7 @@ def get_username_and_content(reply_id):
 
     Args:
         reply_id (Int): Id of a specific reply
-    
+
     Returns:
         Tuple: (username, content)
     """
@@ -148,7 +148,7 @@ def get_topic(topic_id):
     Returns:
         Tuple: (title, content, username)
     """
-    
+
     sql = text("""SELECT t.title, t.content, u.username FROM topics t
                 LEFT JOIN users u ON u.id=t.user_id
                 WHERE t.id=:topic_id""")
@@ -165,11 +165,11 @@ def check_like(user_id, reply_id):
         return True
     return False
 
-def search(q):
+def search(query):
     sql = text("""SELECT t.id, t.title, t.content, d.name
                 FROM topics t
                 LEFT JOIN discussion_zones d ON d.id=t.discussion_zone_id
                 WHERE t.content ILIKE :q OR t.title ILIKE :q""")
-    result = db.session.execute(sql, {"q":"%"+q+"%"})
+    result = db.session.execute(sql, {"q":"%"+query+"%"})
     topics = result.fetchall()
     return topics

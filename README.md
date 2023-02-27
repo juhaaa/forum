@@ -3,6 +3,7 @@
 - This project is for University of Helsinki TSOHA course.
 - The goal of this project is to develop a traditional discussion forum using python/flask and PostgreSQL while trying these techniques for the first time.
 - Documentation and code will be written in english.
+
 ## Intended features
 
 ### Done:
@@ -20,8 +21,7 @@
 - Banning users
 
 ### TODO:
-- error handling
-- Banning users does not affect anything
+- Error handling
 
 
 ## Interface
@@ -62,6 +62,7 @@
 ### Week 7
 
 - Admins can now ban/unban users.
+- Ban affect users capability to post and modify messages
 
 ## How to open?
 
