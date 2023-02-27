@@ -19,9 +19,10 @@
 - Search for topics and first messages
 - Csrf- tokens
 - Banning users
+- Some error handling
 
 ### TODO:
-- Error handling
+- ?
 
 
 ## Interface
@@ -63,6 +64,7 @@
 
 - Admins can now ban/unban users.
 - Ban affect users capability to post and modify messages
+- errors.py handles 403, 404, 500
 
 ## How to open?
 
