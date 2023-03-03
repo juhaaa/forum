@@ -30,7 +30,7 @@ The app has two user roles
 - Only visible for registered users. When users logs in, credentials are checked and session tokens are set.
 - In log in user is assigned flask session username and csrf- token and if user is admin, an separate admin session cookie.
 - Pages are only visible on need to see bases.
-- In logout are session info is set back to none.
+- In logout session info is set back to none.
 - Session is not permanent.
 
 
@@ -41,6 +41,7 @@ The app has two user roles
 ![Home](/screenshots/home.png)
 - The forum is only visible when logged in.
 - After log in the user is directed to the forum.
+- Nac bar contents change based on user roles.
 ![Home](/screenshots/forumfront.png)
 - Topic replies layout
 ![Reply](/screenshots/message.png)
