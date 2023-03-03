@@ -43,11 +43,11 @@ The app has two user roles
 - After log in the user is directed to the forum.
 ![Home](/screenshots/forumfront.png)
 - Topic replies layout
-![Reply](/Screenshots/message.png)
+![Reply](/screenshots/message.png)
 - Page gives user feedback via flash messages
-![Flash](/Screenshots/flashresponse.png)
+![Flash](/screenshots/flashresponse.png)
 - Errors 404, 403 ad 500 are being handled by the app.
-![BAnned](/Screenshots/banned.png)
+![BAnned](/screenshots/banned.png)
 
 ## Changelog
 
