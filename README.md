@@ -6,6 +6,8 @@
 
 ## Features
 
+This is a classic forum style flask app. The basic structure consists of discussion zones, which define the broad subject. Under the zones there are topics, which are more specific subjects and users are able to post replies under the topics.
+
 ### Users
 
 The app has two user roles
