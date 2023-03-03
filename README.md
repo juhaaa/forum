@@ -4,36 +4,47 @@
 - The goal of this project is to develop a traditional discussion forum using python/flask and PostgreSQL while trying these techniques for the first time.
 - Documentation and code will be written in english.
 
-## Intended features
+## Features
 
-### Done:
-- Two types of users, ADMIN/basic
-- Basic users can create account,  log in, create topics and write messages under topics.
-- Messages can also be modified.
-- In addition to basic user capabilities, admin is able to delete messages users and topics.
-- Admins are also able to add discussion zone for different topics.
-- Only visible for registered users.
-- Message timestamping.
-- Liking other users replies, not you own.
-- Deleting discussion zones
-- Search for topics and first messages
-- Csrf- tokens
-- Banning users
-- Some error handling
+### Users
 
-### TODO:
-- ?
+The app has two user roles
+
+|                 	| **Admin** 	| **Basic** 	|
+|:---------------:	|:---------:	|:---------:	|
+|   Create topic  	|     x     	|     x     	|
+|  Reply to topic 	|     x     	|     x     	|
+|    Like reply   	|     x     	|     x     	|
+|   Modify topic  	|     x     	|     x     	|
+|   Modify reply  	|     x     	|     x     	|
+|   Create zone   	|     x     	|           	|
+|   Delete zone   	|     x     	|           	|
+|   Delete topic  	|     x     	|           	|
+|   Delete reply  	|     x     	|           	|
+|  Search topics  	|     x     	|     x     	|
+|   Search users  	|     x     	|           	|
+| Ban/unban users 	|     x     	|           	|
+
+### Security
+
+- Only visible for registered users. When users logs in, credentials are checked and session tokens are set.
+- In log in user is assigned flask session username and csrf- token and if user is admin, an separate admin session cookie.
+- Pages are only visible on need to see bases.
+- In logout are session info is set back to none.
+- Session is not permanent.
+
 
 
 ## Interface
 
 - The app launches in login screen, where you can login or create new user.
+![Home](/screenshots/home.png)
 - The forum is only visible when logged in.
-- After log in the user is directed to the forum. 
+- After log in the user is directed to the forum.
+- Errors 404, 403 ad 500 are being handled by the app.
 
 ## Changelog
 
-- Where are we now?
 
 ### Week 1 and 2
 

@@ -22,7 +22,7 @@
             {% if session.admin %}
                 <li><a href="/users">Users</a></li>
             {% endif %}
-                <li><a href="/logout">Log out ({{ session.name }})</a></li>
+                <li id="overflow"><a href="/logout">Log out ( <p>{{ session.name|truncate(10) }}</p> )</a></li>
             {% else %}
                 <li><a href="/">Home</a></li>
                 <li><a href="/login">Login</a></li>
