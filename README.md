@@ -41,7 +41,13 @@ The app has two user roles
 ![Home](/screenshots/home.png)
 - The forum is only visible when logged in.
 - After log in the user is directed to the forum.
+![Home](/screenshots/forumfront.png)
+- Topic replies layout
+![Reply](/Screenshots/message.png)
+- Page gives user feedback via flash messages
+![Flash](/Screenshots/flashresponse.png)
 - Errors 404, 403 ad 500 are being handled by the app.
+![BAnned](/Screenshots/banned.png)
 
 ## Changelog
 
