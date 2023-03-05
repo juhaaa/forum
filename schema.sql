@@ -8,8 +8,7 @@ CREATE TABLE users (
 
 CREATE TABLE discussion_zones (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(50) NOT NULL UNIQUE,
-  visible BOOLEAN DEFAULT TRUE
+  name VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE topics (
