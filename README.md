@@ -2,7 +2,6 @@
 
 - This project is for University of Helsinki TSOHA course.
 - The goal of this project is to develop a traditional discussion forum using python/flask and PostgreSQL while trying these techniques for the first time.
-- Documentation and code will be written in english.
 
 ## Features
 
@@ -52,39 +51,6 @@ The app has two user roles
 - Errors 404, 403 ad 500 are being handled by the app.
 ![BAnned](/screenshots/banned.png)
 
-## Changelog
-
-
-### Week 1 and 2
-
-- Pretty much just trying to test and understand flask
-
-### Week 3
-
-- Project somewhat on its way. Basic html design is pretty much done and I'm pretty sure my schema is fine. Now there remains implementing almost all database functionality.
-- Still trying to figure out the proper structure.
-
-### Week 4
-
-- Implementing basic queries to serve forum structure
-
-### Week 5
-
-- Ability to post topics and messages. Admin can create new zones.
-- Users can modify their own messages and topics. Admins are able to do that and also delete every message and topic.
-- Looks like a forum.
-
-### Week 6
-
-- Users can now like other users posts. Added database table votes to help with this.
-- Implementation of search.
-- Added csrf tokens and backend user checks to routes.
-
-### Week 7
-
-- Admins can now ban/unban users.
-- Ban affect users capability to post and modify messages
-- errors.py handles 403, 404, 500
 
 ## How to open?
 
